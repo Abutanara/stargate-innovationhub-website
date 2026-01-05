@@ -1,0 +1,22 @@
+# ForeverTold - robots.txt
+# https://forevertold.app/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://forevertold.app/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow crawlers to access all public content
+Allow: /index.html
+Allow: /datenschutz.html
+Allow: /impressum.html
+Allow: /agb.html
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
