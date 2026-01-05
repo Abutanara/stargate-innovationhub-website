@@ -1,0 +1,318 @@
+# Stargate Innovationhub Website - Projekt-Regeln für AI-Assistenten
+
+> **META-REGEL (WICHTIG)**: Wenn der User in einem Chat neue Konventionen, Regeln oder Anforderungen festlegt, MUSS diese Datei entsprechend aktualisiert werden. Frage nach Bestätigung bevor du Updates machst.
+>
+> **Trigger-Phrasen für Updates:** "Ab jetzt...", "Neue Regel:", "Bitte merken:", "Konvention ändern:", "Standard ist jetzt..."
+
+---
+
+## 📄 Haupt-Dokumentationsdateien (IMMER AKTUELL HALTEN!)
+
+| Datei | Zweck | Wann aktualisieren? |
+|-------|-------|---------------------|
+| `.cursorrules` | AI-Projekt-Konventionen | Bei neuen Regeln/Konventionen |
+| `IONOS_GITHUB_SETUP.md` | Deployment-Anleitung | Bei Hosting-Änderungen |
+| `REDIRECT_PLAN.md` | URL-Weiterleitungsplan | Bei neuen Redirects/Seiten |
+
+---
+
+## 📁 Projekt-Übersicht
+
+- **Projekt:** Stargate Innovationhub - Unternehmenswebsite
+- **Domain:** stargate-innovationhub.com
+- **Produkte:** MyQuitly (Rauchen-aufhören App), ForeverTold (Lebensgeschichten-App)
+- **Tech Stack:**
+  - HTML5, CSS3 (Custom Properties), Vanilla JavaScript (ES6+)
+  - Keine Build-Tools, kein Framework – pure statische Website
+  - GitHub Pages Hosting mit Custom Domain
+  - Google Fonts (Inter für Body, Outfit für Display)
+
+**Wichtige Dateien zum Lesen bei Projektstart:**
+- `/index.html` - Hauptseite & Struktur verstehen
+- `/css/styles.css` - Design-System & CSS-Variablen
+- `/js/main.js` - Shared JavaScript Logik
+- `IONOS_GITHUB_SETUP.md` - Deployment verstehen
+
+---
+
+## 🏗️ Projekt-Struktur Konventionen
+
+### Ordnerstruktur
+```
+/                           # Root = Deutsche Version (DE)
+├── index.html              # DE Startseite
+├── en/                     # Englische Version
+│   ├── index.html          # EN Startseite
+│   ├── legal/              # EN Legal Seiten
+│   └── products/           # EN Produktseiten
+├── legal/                  # DE Legal Seiten
+│   ├── imprint.html
+│   ├── privacy.html
+│   ├── terms.html
+│   ├── cookies.html
+│   └── disclaimer.html
+├── products/               # DE Produktseiten
+│   ├── index.html          # Produktübersicht
+│   ├── myquitly/
+│   └── forevertold/
+├── css/styles.css          # EINZIGES Stylesheet
+├── js/main.js              # EINZIGE JavaScript Datei
+├── images/                 # Alle Bilder (PNG bevorzugt)
+├── _original/              # Archiv alte Einzelwebsites (NICHT BEARBEITEN)
+├── CNAME                   # GitHub Pages Domain
+├── robots.txt
+└── sitemap.xml
+```
+
+### Naming Conventions
+
+| Element | Convention | Beispiele |
+|---------|------------|-----------|
+| HTML-Dateien | kebab-case.html | `privacy.html`, `index.html` |
+| CSS-Klassen | BEM (`block__element--modifier`) | `nav__link`, `product-card__icon--myquitly` |
+| CSS-Variablen | `--category-name` | `--color-brand`, `--space-4`, `--font-display` |
+| IDs | kebab-case | `cookie-banner`, `cookie-modal` |
+| Bilder | kebab-case.png/jpg | `myquitly-icon.png`, `og-image.png` |
+
+---
+
+## 💻 Code-Stil & Qualität
+
+### HTML-Regeln
+- **Sprache:** `lang="de"` für deutsche Seiten, `lang="en"` für englische
+- **Pfade:** IMMER absolute Pfade verwenden (`/css/styles.css`, NICHT `../css/styles.css`)
+- **Meta Tags:** Vollständige SEO-Meta Tags (title, description, OG, Twitter, hreflang)
+- **Structured Data:** JSON-LD für Produkte (SoftwareApplication, FAQPage, BreadcrumbList)
+- **Accessibility:** aria-labels, alt-Texte, semantische HTML5 Tags
+
+```html
+<!-- ✅ GUT -->
+<link rel="stylesheet" href="/css/styles.css">
+<a href="/products/myquitly/">MyQuitly</a>
+
+<!-- ❌ SCHLECHT -->
+<link rel="stylesheet" href="../css/styles.css">
+<a href="products/myquitly">MyQuitly</a>
+```
+
+### CSS-Regeln
+- **Design Tokens:** Nutze IMMER CSS-Variablen aus `:root`
+- **Farben:** NIEMALS Hex-Codes direkt, immer `var(--color-...)`
+- **Spacing:** IMMER `var(--space-...)` für Abstände
+- **Fonts:** IMMER `var(--font-display)` oder `var(--font-body)`
+
+```css
+/* ✅ GUT */
+.my-element {
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    font-family: var(--font-body);
+    border-radius: var(--radius-lg);
+}
+
+/* ❌ SCHLECHT */
+.my-element {
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    font-family: Inter, sans-serif;
+    border-radius: 12px;
+}
+```
+
+### Produkt-spezifische Farben
+| Produkt | Primary | CSS-Variable |
+|---------|---------|--------------|
+| Stargate (Brand) | #62c9f3 | `--color-brand` |
+| MyQuitly | #20C997 | `--color-myquitly` |
+| ForeverTold | #E07A5F | `--color-forevertold` |
+
+```css
+/* Produkt-spezifische Modifier verwenden */
+.btn--myquitly { background: var(--color-myquitly); }
+.btn--forevertold { background: var(--color-forevertold); }
+```
+
+### JavaScript-Regeln
+- Vanilla JavaScript (kein jQuery, kein Framework)
+- Event Delegation wo sinnvoll
+- localStorage für Cookie Consent
+- Optional Chaining (`?.`) nutzen
+
+---
+
+## ⚠️ Vermeiden (Anti-Patterns)
+
+### Over-Engineering
+- ❌ KEINE neuen CSS-Dateien erstellen – alles in `/css/styles.css`
+- ❌ KEINE neuen JS-Dateien (außer für sehr spezifische Seiten-Logik)
+- ❌ KEINE Build-Tools, Bundler oder Frameworks einführen
+- ❌ KEINE npm packages für Frontend-Logik
+- ❌ KEINE CSS-Frameworks (Tailwind, Bootstrap) – wir haben unser eigenes Design-System
+
+### Code-Qualität
+- ❌ KEINE Inline-Styles (außer für dynamische Werte oder Ausnahmen wie in Product-Seiten)
+- ❌ KEINE `!important` in CSS
+- ❌ KEINE relativen Pfade (`../`, `./`)
+- ❌ KEINE neuen Schriftarten ohne Absprache
+- ❌ KEINE Farben außerhalb des Design-Systems
+
+### Struktur
+- ❌ NIEMALS `_original/` Ordner bearbeiten (Archiv!)
+- ❌ KEINE neuen Ordner ohne Absprache
+- ❌ KEINE englischen Seiten ohne deutsche Entsprechung (und umgekehrt)
+
+---
+
+## ✅ Immer tun (Best Practices)
+
+### Vor der Implementation
+- [ ] Bestehende CSS-Variablen in `:root` prüfen
+- [ ] Ähnliche Komponenten/Seiten als Referenz lesen
+- [ ] Mobile-First denken (kleinste Breakpoints zuerst)
+
+### Nach der Implementation
+- [ ] Deutsche UND englische Version aktualisieren
+- [ ] Meta Tags (title, description) aktualisieren
+- [ ] hreflang-Tags korrekt setzen
+- [ ] Links mit absoluten Pfaden prüfen
+
+### Bei neuen Seiten
+- [ ] Template von ähnlicher Seite kopieren
+- [ ] Header & Footer konsistent halten
+- [ ] Cookie-Banner einbinden
+- [ ] `sitemap.xml` aktualisieren
+- [ ] Canonical URL setzen
+
+---
+
+## 🔀 Git & Commits
+
+### Commit-Message Format
+```
+<type>: <beschreibung auf deutsch>
+
+Beispiele:
+feat: Neue FAQ-Sektion zu MyQuitly hinzugefügt
+fix: Broken Link im Footer korrigiert
+style: Button-Hover Effekt verbessert
+docs: IONOS Setup Anleitung aktualisiert
+content: Produktbeschreibung MyQuitly überarbeitet
+seo: Structured Data für ForeverTold ergänzt
+```
+
+### Commit-Types
+| Type | Verwendung |
+|------|------------|
+| `feat` | Neue Features/Sektionen |
+| `fix` | Bug Fixes |
+| `style` | CSS/Design Änderungen |
+| `content` | Text/Content Änderungen |
+| `seo` | SEO Optimierungen (Meta, Structured Data) |
+| `docs` | Dokumentation |
+| `refactor` | Code-Umstrukturierung ohne Feature-Änderung |
+
+---
+
+## 🗂️ Wichtige Ordner-Referenz
+
+| Ordner | Zweck | Hinweise |
+|--------|-------|----------|
+| `/` | Deutsche Hauptseiten | Root ist implizit DE |
+| `/en/` | Englische Seiten | Spiegelt deutsche Struktur |
+| `/products/` | Produktseiten (DE) | myquitly/, forevertold/ |
+| `/legal/` | Rechtliche Seiten (DE) | imprint, privacy, terms, cookies, disclaimer |
+| `/css/` | Stylesheet | NUR styles.css |
+| `/js/` | JavaScript | NUR main.js |
+| `/images/` | Alle Bilder | PNG bevorzugt, max 200KB |
+| `/_original/` | Archiv | ⚠️ NICHT BEARBEITEN |
+
+---
+
+## 🚀 Häufige Aufgaben
+
+### Neue Seite erstellen (DE + EN)
+1. Deutsche Version in passendem Ordner erstellen (`/legal/new-page.html`)
+2. Header/Footer von ähnlicher Seite kopieren
+3. Meta Tags anpassen (title, description, canonical, hreflang)
+4. Englische Version erstellen (`/en/legal/new-page.html`)
+5. Navigation aktualisieren (wenn nötig)
+6. `sitemap.xml` aktualisieren
+
+### Neue CSS-Komponente erstellen
+1. Bestehende ähnliche Komponenten in `/css/styles.css` als Referenz nutzen
+2. BEM-Naming verwenden
+3. CSS-Variablen für Farben, Spacing, Fonts nutzen
+4. Responsive Styles mit Mobile-First
+5. Komponente am Ende der relevanten Sektion in styles.css hinzufügen
+
+### Content-Update
+1. Deutsche UND englische Version aktualisieren
+2. Bei Datumsänderungen: `<p class="legal-page__updated">Stand: ...` aktualisieren
+3. Structured Data aktualisieren (wenn relevant)
+
+---
+
+## 📌 Projekt-spezifische Regeln
+
+### Mehrsprachigkeit
+- Deutsch ist die Hauptsprache (Root `/`)
+- Englisch unter `/en/`
+- IMMER beide Sprachen synchron halten
+- hreflang-Tags in jeder Seite:
+```html
+<link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/...">
+<link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/...">
+```
+
+### SEO & Structured Data
+- Jede Seite braucht: title, meta description, canonical, OG-Tags
+- Produktseiten: SoftwareApplication, FAQPage, BreadcrumbList, HowTo
+- Organisation: Organization Schema auf Hauptseite
+
+### Cookie Consent
+- Eigene Implementation (kein externes Tool)
+- localStorage Keys: `cookieConsent`, `cookieAnalytics`, `cookieMarketing`
+- Cookie-Banner & Modal in jeder Seite einbinden
+
+### Design-System Highlights
+- **Dark Theme:** `--color-bg-primary: #0A0A0F`
+- **Brand Gradient:** `linear-gradient(135deg, var(--color-brand-light), var(--color-brand))`
+- **Container Max:** 1200px
+- **Breakpoints:** Mobile-first (320px → 768px → 1024px → 1200px)
+
+---
+
+## 🔄 Regel-Updates
+
+- **Letzte Aktualisierung:** 5. Januar 2026
+- **Erstellt durch:** AI-Analyse des bestehenden Projekts
+
+### Trigger-Phrasen für Updates
+Wenn der User folgende Phrasen verwendet, diese Datei aktualisieren:
+- "Ab jetzt..."
+- "Neue Regel:"
+- "Bitte merken:"
+- "Konvention ändern:"
+- "Standard ist jetzt..."
+- "Vergiss nicht, dass..."
+- "Wichtig für die Zukunft:"
+
+---
+
+## 📝 Zusätzliche Notizen
+
+### Domain & Hosting
+- **Domain:** stargate-innovationhub.com (über IONOS registriert)
+- **Hosting:** GitHub Pages
+- **SSL:** Automatisch via GitHub Pages (Let's Encrypt)
+
+### Kontakt
+- **E-Mail:** info@stargate-innovationhub.com
+- **Adresse:** Albert-Schweitzer-Allee 9, 65203 Wiesbaden, Deutschland
+
+### App Store Links
+- **MyQuitly iOS:** https://apps.apple.com/app/id6754508949
+- **MyQuitly Android:** https://play.google.com/store/apps/details?id=com.myquitly.quitsmoking
+- **ForeverTold iOS:** https://apps.apple.com/app/forevertold
+- **ForeverTold Android:** https://play.google.com/store/apps/details?id=app.forevertold
+
