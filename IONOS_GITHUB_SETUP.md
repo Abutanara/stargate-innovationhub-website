@@ -1,272 +1,195 @@
-# IONOS & GitHub Setup-Anleitung für die neue Website
+# IONOS & GitHub Setup (Custom Domain + neue Struktur)
 
-## Übersicht
-Diese Anleitung erklärt, was Sie in IONOS und GitHub anpassen müssen, um die neue einheitliche Website-Struktur zu aktivieren.
+## Überblick (was wir erreichen)
+Du hast jetzt **eine gemeinsame Website-Struktur** im Repo (Root = DE, `/en/` = EN, `/products/…` usw.). Ziel ist:
+- **Hauptdomain**: `stargate-innovationhub.com` zeigt auf GitHub Pages (neue Website).
+- **Optional**: `www.stargate-innovationhub.com` zeigt auch auf die Website (oder leitet auf die Hauptdomain um).
+- **Alte Domains/Subdomains** (z.B. `myquitly.stargate-innovationhub.com`, `forevertold.app`) sollen per **301** auf die neuen URLs weiterleiten.
+
+Wichtig: Für GitHub Pages mit Custom Domain musst du bei IONOS **DNS-Records setzen** (A/AAAA/CNAME). **Nameserver zu GitHub ändern ist normalerweise nicht nötig**.
 
 ---
 
-## 📋 Schritt 1: GitHub Repository vorbereiten
+## Voraussetzungen (bitte einmal klären)
+- **Apex-Domain**: `stargate-innovationhub.com` (ja)
+- **www**: willst du `www.stargate-innovationhub.com` nutzen?
+  - Empfehlung: **ja** (und dann entweder auch auf GitHub Pages zeigen lassen oder als 301 auf Apex umleiten).
+- **GitHub Pages Typ**:
+  - **User/Org Site**: Repo heißt meist `<username>.github.io`
+  - **Project Site**: Repo heißt beliebig, Pages URL ist trotzdem `https://<username>.github.io/<repo>/`
 
-### 1.1 CNAME-Datei erstellen
-Erstellen Sie eine `CNAME`-Datei im Root-Verzeichnis mit der neuen Domain:
+Falls du unsicher bist: In GitHub → **Settings → Pages** steht die **Pages URL**. Die brauchen wir gleich für den `www`-CNAME.
+
+---
+
+## Schritt 1: Repo-Dateien (was im Repo vorhanden sein muss)
+
+### 1.1 `CNAME` (Custom Domain Datei)
+Die Datei existiert bereits und muss im Root liegen:
 
 **Datei:** `/CNAME`
 ```
 stargate-innovationhub.com
 ```
 
-### 1.2 GitHub Pages aktivieren
-1. Gehen Sie zu Ihrem GitHub Repository
-2. Navigieren Sie zu **Settings** → **Pages**
-3. Unter **Source** wählen Sie:
-   - **Branch:** `main` (oder `master`)
-   - **Folder:** `/ (root)`
-4. Klicken Sie auf **Save**
+### 1.2 Kein `.nojekyll` im Root (bewusst)
+Wir erstellen **absichtlich kein** `.nojekyll` im Root, weil GitHub/Jekyll sonst auch den Ordner `_original/` ausliefern würde (Archiv, groß, soll nicht öffentlich sein).
 
-### 1.3 Dateien committen und pushen
+---
+
+## Schritt 2: GitHub Pages richtig einstellen (klick-genau)
+
+### 2.1 Deploy aus dem richtigen Ordner aktivieren
+1. Öffne dein GitHub Repository
+2. Gehe zu **Settings → Pages**
+3. Unter **Build and deployment**:
+   - **Source**: „Deploy from a branch“
+   - **Branch**: `main`
+   - **Folder**: `/ (root)`
+4. Speichern
+
+### 2.2 Custom Domain in GitHub hinterlegen
+1. In **Settings → Pages**
+2. Bereich **Custom domain**
+3. Trage ein: `stargate-innovationhub.com`
+4. Speichern
+
+GitHub prüft danach DNS. Das kann einige Minuten dauern.
+
+### 2.3 HTTPS erzwingen
+1. In **Settings → Pages**
+2. Checkbox **Enforce HTTPS** aktivieren
+   - Wenn die Checkbox erst später aktiv wird: DNS muss erst korrekt sein, dann stellt GitHub das Zertifikat aus (kann bis zu ~24h dauern).
+
+---
+
+## Schritt 3: IONOS – Hauptdomain von „Weiterleitung“ auf „DNS“ umstellen
+
+Du hast aktuell (laut Screenshot) die **Hauptdomain** als **Weiterleitung** auf `http://myquitly…` gesetzt. Das muss weg, sonst zeigt die Hauptdomain nie auf GitHub Pages.
+
+### 3.1 Weiterleitung entfernen / Verwendungsart auf DNS stellen
+In IONOS:
+1. Domain auswählen: `stargate-innovationhub.com`
+2. Tab/Abschnitt **Details**
+3. Bei **Verwendungsart**: **nicht** „Weiterleitung“, sondern **DNS** (oder „Domain nur verwalten“ / „DNS verwenden“ – je nach IONOS UI)
+4. Speichern
+
+---
+
+## Schritt 4: IONOS – DNS Records für GitHub Pages setzen (wichtigster Teil)
+
+### 4.1 A-Records für Apex setzen (`stargate-innovationhub.com`)
+In IONOS → **DNS** (oder „DNS Einstellungen“ / „Resource Records“):
+
+Erstelle/ersetze folgende **A-Records** für den Host `@` (manchmal heißt das Feld „Host“ oder „Name“):
+- `@` → `185.199.108.153`
+- `@` → `185.199.109.153`
+- `@` → `185.199.110.153`
+- `@` → `185.199.111.153`
+
+Hinweise:
+- Manche UIs erlauben **4 A-Records** für denselben Host, manche wollen sie in einer Liste.
+- Falls schon A-Records existieren: **alte entfernen/ersetzen**, damit nur die GitHub-IP(s) aktiv sind.
+
+### 4.2 (Optional, empfohlen) AAAA-Records für IPv6 setzen
+Wenn IONOS AAAA erlaubt, setze zusätzlich für `@`:
+- `@` → `2606:50c0:8000::153`
+- `@` → `2606:50c0:8001::153`
+- `@` → `2606:50c0:8002::153`
+- `@` → `2606:50c0:8003::153`
+
+### 4.3 CNAME für `www` setzen
+Wenn du `www.stargate-innovationhub.com` nutzen willst:
+
+- **Host/Name**: `www`
+- **Typ**: `CNAME`
+- **Wert/Ziel**: deine GitHub Pages Ziel-Domain
+
+Typischer Wert ist:
+- **User/Org Site**: `<username>.github.io`
+- **Project Site**: ebenfalls `<username>.github.io` (GitHub routet intern korrekt)
+
+Beispiel (Platzhalter):
+```
+www  CNAME  deinusername.github.io
+```
+
+### 4.4 Wichtiger Hinweis: Kein CNAME für Apex
+Setze **keinen** CNAME für `@` (Apex). Bei DNS ist für die Hauptdomain üblich: **A/AAAA** (oder ALIAS/ANAME, falls Provider das unterstützt).
+
+---
+
+## Schritt 5: Subdomains/alte Domains per 301 weiterleiten (IONOS)
+
+### 5.1 `myquitly.stargate-innovationhub.com` → neue MyQuitly-Seite
+In IONOS:
+1. Subdomain auswählen (oder anlegen): `myquitly`
+2. Verwendungsart: **Weiterleitung**
+3. Ziel: `https://stargate-innovationhub.com/products/myquitly/`
+4. Typ: **301 permanent**
+5. Speichern
+
+### 5.2 `forevertold.app` → neue ForeverTold-Seite
+Analog:
+- Ziel: `https://stargate-innovationhub.com/products/forevertold/`
+- Typ: **301 permanent**
+
+Optional (zusätzlich sauber):
+- `www.forevertold.app` ebenfalls per 301 auf die neue Seite.
+
+---
+
+## Schritt 6: Tests (damit du sicher bist, dass alles korrekt ist)
+
+### 6.1 DNS prüfen (Terminal)
 ```bash
-# Alle neuen Dateien hinzufügen
-git add .
-
-# Commit erstellen
-git commit -m "Neue einheitliche Website-Struktur"
-
-# Zu GitHub pushen
-git push origin main
+dig +short stargate-innovationhub.com A
+dig +short stargate-innovationhub.com AAAA
+dig +short www.stargate-innovationhub.com CNAME
 ```
 
-**Wichtig:** Nach dem Push kann es 5-10 Minuten dauern, bis GitHub Pages die Website bereitstellt.
+Erwartung:
+- A zeigt die `185.199.108.153` … `185.199.111.153`
+- CNAME von `www` zeigt auf `<username>.github.io` (oder was du gesetzt hast)
+
+### 6.2 Redirects prüfen (Terminal)
+```bash
+curl -I https://myquitly.stargate-innovationhub.com
+curl -I https://forevertold.app
+```
+
+Erwartung:
+- HTTP Status `301` und `Location: https://stargate-innovationhub.com/products/.../`
+
+### 6.3 Browser prüfen
+- `https://stargate-innovationhub.com/`
+- `https://stargate-innovationhub.com/en/`
+- `https://stargate-innovationhub.com/products/`
+- `https://stargate-innovationhub.com/products/myquitly/`
+- `https://stargate-innovationhub.com/products/forevertold/`
 
 ---
 
-## 🌐 Schritt 2: IONOS Domain-Konfiguration
-
-### 2.1 Aktuelle Situation (aus Screenshot)
-- **Domain:** Aktuell als "Zusatz-Domain" konfiguriert
-- **Verwendungsart:** "Weiterleitung" zu `http://myquitly.stargate-innovationhub.com`
-- **Status:** Aktiv
-
-### 2.2 Was Sie in IONOS ändern müssen
-
-#### Option A: GitHub Pages mit IONOS Domain (Empfohlen)
-
-1. **Verwendungsart ändern:**
-   - Gehen Sie zu **Details** → **Verwendungsart anpassen**
-   - Ändern Sie von "Weiterleitung" zu **"Webhosting"** oder **"DNS"**
-
-2. **Nameserver auf GitHub Pages umstellen:**
-   - Gehen Sie zu **Nameserver**
-   - Ändern Sie die Nameserver zu:
-     ```
-     ns1.github.com
-     ns2.github.com
-     ns3.github.com
-     ns4.github.com
-     ```
-   - **ODER** verwenden Sie A-Records (wenn Nameserver nicht geändert werden können):
-     ```
-     A-Record: 185.199.108.153
-     A-Record: 185.199.109.153
-     A-Record: 185.199.110.153
-     A-Record: 185.199.111.153
-     ```
-
-3. **CNAME-Record hinzufügen (falls A-Records verwendet werden):**
-   - Erstellen Sie einen CNAME-Record:
-     ```
-     Name: @ (oder leer)
-     Typ: CNAME
-     Wert: [Ihr-GitHub-Username].github.io
-     ```
-
-#### Option B: Weiterleitung beibehalten (Alternative)
-
-Wenn Sie die Domain-Weiterleitung in IONOS beibehalten möchten:
-
-1. **Weiterleitung anpassen:**
-   - Gehen Sie zu **Details** → **Weiterleitung anpassen**
-   - Ändern Sie die Ziel-URL von:
-     ```
-     http://myquitly.stargate-innovationhub.com
-     ```
-   - Zu:
-     ```
-     https://stargate-innovationhub.com
-     ```
-   - **Wichtig:** Verwenden Sie `https://` (nicht `http://`)
-
-2. **SSL-Zertifikat prüfen:**
-   - Stellen Sie sicher, dass das SSL-Zertifikat aktiv ist (grünes Schloss-Symbol)
-
----
-
-## 🔄 Schritt 3: Subdomain-Weiterleitungen einrichten
-
-### 3.1 MyQuitly Subdomain (myquitly.stargate-innovationhub.com)
-
-**In IONOS:**
-1. Erstellen Sie eine neue Subdomain oder bearbeiten Sie die bestehende
-2. Setzen Sie die Verwendungsart auf **"Weiterleitung"**
-3. Ziel-URL: `https://stargate-innovationhub.com/products/myquitly/`
-4. Typ: **301 (Permanent Redirect)**
-
-**Alternative: GitHub Pages Redirect**
-Wenn die Subdomain auch über GitHub Pages läuft, erstellen Sie eine `_redirects` Datei oder verwenden Sie JavaScript-Redirects.
-
-### 3.2 ForeverTold Domain (forevertold.app)
-
-**In IONOS:**
-1. Gehen Sie zur Domain-Verwaltung für `forevertold.app`
-2. Setzen Sie die Verwendungsart auf **"Weiterleitung"**
-3. Ziel-URL: `https://stargate-innovationhub.com/products/forevertold/`
-4. Typ: **301 (Permanent Redirect)**
-
----
-
-## 📁 Schritt 4: GitHub Repository-Struktur
-
-### 4.1 Erforderliche Dateien im Root
-
-```
-/
-├── CNAME                          # Domain-Konfiguration
-├── index.html                     # Hauptseite (DE)
-├── en/
-│   └── index.html                 # Hauptseite (EN)
-├── products/
-│   ├── index.html
-│   ├── myquitly/
-│   │   └── index.html
-│   └── forevertold/
-│       └── index.html
-├── legal/
-│   ├── imprint.html
-│   ├── privacy.html
-│   ├── terms.html
-│   ├── cookies.html
-│   └── disclaimer.html
-├── css/
-│   └── styles.css
-├── js/
-│   └── main.js
-├── images/
-├── robots.txt
-└── sitemap.xml
-```
-
-### 4.2 .nojekyll Datei (falls nötig)
-
-Wenn GitHub Pages Probleme mit Dateien hat, die mit `_` beginnen:
-```
-/.nojekyll
-```
-(Leere Datei erstellen)
-
----
-
-## ✅ Schritt 5: Checkliste
+## Checkliste (kurz & praktisch)
 
 ### GitHub
-- [ ] CNAME-Datei erstellt mit `stargate-innovationhub.com`
-- [ ] Alle Dateien committed und gepusht
-- [ ] GitHub Pages aktiviert (Settings → Pages)
-- [ ] Website unter `https://[username].github.io` erreichbar
-- [ ] Custom Domain funktioniert (kann bis zu 24h dauern)
+- [ ] Pages aktiviert: `main` + `/ (root)`
+- [ ] Custom domain eingetragen: `stargate-innovationhub.com`
+- [ ] „Enforce HTTPS“ aktiv
 
-### IONOS - Hauptdomain
-- [ ] Verwendungsart von "Weiterleitung" zu "DNS/Webhosting" geändert
-- [ ] Nameserver auf GitHub Pages umgestellt ODER A-Records konfiguriert
-- [ ] SSL-Zertifikat aktiv und gültig
-- [ ] Domain zeigt auf neue Website (nicht mehr auf alte Subdomain)
+### IONOS (Hauptdomain)
+- [ ] Verwendungsart **nicht** „Weiterleitung“
+- [ ] `@` hat 4× A-Records (GitHub IPs)
+- [ ] (optional) `@` hat 4× AAAA-Records
+- [ ] (optional) `www` CNAME → `<username>.github.io`
 
-### IONOS - Subdomains/Weiterleitungen
-- [ ] `myquitly.stargate-innovationhub.com` → `https://stargate-innovationhub.com/products/myquitly/` (301)
-- [ ] `forevertold.app` → `https://stargate-innovationhub.com/products/forevertold/` (301)
-
-### Testing
-- [ ] Hauptdomain funktioniert: `https://stargate-innovationhub.com`
-- [ ] Englische Version funktioniert: `https://stargate-innovationhub.com/en/`
-- [ ] MyQuitly Seite funktioniert: `https://stargate-innovationhub.com/products/myquitly/`
-- [ ] ForeverTold Seite funktioniert: `https://stargate-innovationhub.com/products/forevertold/`
-- [ ] Weiterleitungen funktionieren (301 Redirects)
-- [ ] SSL funktioniert (grünes Schloss)
-- [ ] Mobile Ansicht funktioniert
+### IONOS (Redirects)
+- [ ] `myquitly.stargate-innovationhub.com` 301 → `/products/myquitly/`
+- [ ] `forevertold.app` 301 → `/products/forevertold/`
 
 ---
 
-## 🔧 Schritt 6: DNS-Propagierung
-
-**Wichtig:** Nach Änderungen an Nameservern oder DNS-Einträgen kann es **24-48 Stunden** dauern, bis die Änderungen weltweit wirksam sind.
-
-**DNS-Propagierung prüfen:**
-- Verwenden Sie Tools wie:
-  - https://dnschecker.org
-  - https://www.whatsmydns.net
-- Geben Sie Ihre Domain ein und prüfen Sie, ob die neuen Nameserver/IPs weltweit propagiert sind
-
----
-
-## 🚨 Häufige Probleme & Lösungen
-
-### Problem: Domain zeigt noch auf alte Website
-**Lösung:**
-- Warten Sie 24-48 Stunden auf DNS-Propagierung
-- Leeren Sie Browser-Cache
-- Prüfen Sie DNS-Einträge mit `dig stargate-innovationhub.com` oder `nslookup`
-
-### Problem: SSL-Zertifikat-Fehler
-**Lösung:**
-- GitHub Pages stellt automatisch SSL-Zertifikate bereit (Let's Encrypt)
-- Warten Sie nach DNS-Änderung bis zu 24 Stunden
-- Prüfen Sie in GitHub Pages Settings, ob die Domain verifiziert ist
-
-### Problem: Weiterleitungen funktionieren nicht
-**Lösung:**
-- Prüfen Sie in IONOS, ob die Weiterleitung auf "301 Permanent" gesetzt ist
-- Verwenden Sie `https://` (nicht `http://`) in den Weiterleitungszielen
-- Testen Sie mit: `curl -I https://myquitly.stargate-innovationhub.com`
-
-### Problem: GitHub Pages zeigt 404
-**Lösung:**
-- Prüfen Sie, ob die CNAME-Datei korrekt ist
-- Prüfen Sie, ob GitHub Pages aktiviert ist
-- Prüfen Sie die Repository-Struktur (Dateien müssen im Root oder angegebenen Ordner sein)
-
----
-
-## 📞 Support-Kontakte
-
-**IONOS Support:**
-- Telefon: 0800 2000 000 (kostenlos)
-- E-Mail: support@ionos.de
-- Live-Chat im IONOS Kundencenter
-
-**GitHub Support:**
-- https://docs.github.com/en/pages
-- GitHub Community Forum
-
----
-
-## 📝 Notizen
-
-**Aktuelle GitHub Pages IPs (Stand 2024):**
-```
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-```
-
-**GitHub Pages Nameserver:**
-```
-ns1.github.com
-ns2.github.com
-ns3.github.com
-ns4.github.com
-```
-
-**Wichtige URLs:**
-- Hauptdomain: `https://stargate-innovationhub.com`
-- MyQuitly: `https://stargate-innovationhub.com/products/myquitly/`
-- ForeverTold: `https://stargate-innovationhub.com/products/forevertold/`
+## Hilfreiche Links (Dokumentation)
+- GitHub Pages Doku: `https://docs.github.com/en/pages`
+- DNS Propagation Check (Tools): `https://dnschecker.org` und `https://www.whatsmydns.net`
 
