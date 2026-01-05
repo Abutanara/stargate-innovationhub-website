@@ -1,0 +1,17 @@
+# Robots.txt for Stargate Innovationhub
+# https://stargate-innovationhub.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://stargate-innovationhub.com/sitemap.xml
+
+# Crawl-delay (optional, for politeness)
+Crawl-delay: 1
+
+# Disallow any staging or test directories (if any)
+Disallow: /staging/
+Disallow: /test/
+Disallow: /_dev/
+

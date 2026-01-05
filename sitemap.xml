@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+    <!-- German Pages (Default) -->
+    <url>
+        <loc>https://stargate-innovationhub.com/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/products/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/products/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/products/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/products/myquitly/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/products/myquitly/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/products/myquitly/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/products/forevertold/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/products/forevertold/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/products/forevertold/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/legal/imprint.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/imprint.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/imprint.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/legal/privacy.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/privacy.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/legal/terms.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/terms.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/terms.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/legal/cookies.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/cookies.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/cookies.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/legal/disclaimer.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/disclaimer.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/disclaimer.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <!-- English Pages -->
+    <url>
+        <loc>https://stargate-innovationhub.com/en/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/products/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/products/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/products/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/products/myquitly/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/products/myquitly/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/products/myquitly/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/products/forevertold/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/products/forevertold/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/products/forevertold/"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/legal/imprint.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/imprint.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/imprint.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/legal/privacy.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/privacy.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/legal/terms.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/terms.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/terms.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/legal/cookies.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/cookies.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/cookies.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    
+    <url>
+        <loc>https://stargate-innovationhub.com/en/legal/disclaimer.html</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://stargate-innovationhub.com/legal/disclaimer.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://stargate-innovationhub.com/en/legal/disclaimer.html"/>
+        <lastmod>2026-01-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    
+</urlset>
