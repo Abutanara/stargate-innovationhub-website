@@ -712,7 +712,14 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 600px) {
     .features-grid {
+        grid-template-columns: 1fr;
         gap: var(--space-4);
+    }
+    
+    /* Reset centering for single column layout */
+    .features-grid > .feature-card:last-child:nth-child(odd) {
+        grid-column: auto;
+        max-width: none;
     }
     
     .feature-card {
