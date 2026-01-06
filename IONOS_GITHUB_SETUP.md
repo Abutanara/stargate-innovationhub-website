@@ -129,6 +129,20 @@ In IONOS:
 4. Typ: **301 permanent**
 5. Speichern
 
+Wichtig (häufigster Fehler):
+- Eine IONOS-Weiterleitung funktioniert **nur**, wenn `myquitly` DNS-seitig **nicht** auf GitHub Pages zeigt.
+- Prüfe in IONOS → **DNS**, dass es **keinen** `CNAME myquitly ...` und **keine** `A/AAAA myquitly ...` Records gibt, die auf GitHub (oder sonst wohin) zeigen.
+- Wenn so ein Record existiert, landet der Traffic bei GitHub und **IONOS kann nicht weiterleiten** → dann wirkt die Weiterleitung “scheinbar nicht”.
+
+Schnelltest (Terminal):
+```bash
+dig +short myquitly.stargate-innovationhub.com A
+dig +short myquitly.stargate-innovationhub.com AAAA
+curl -I https://myquitly.stargate-innovationhub.com
+```
+Erwartung:
+- Bei `curl -I` muss ein `301` kommen und ein `Location: https://stargate-innovationhub.com/products/myquitly/`
+
 ### 5.2 `forevertold.app` → neue ForeverTold-Seite
 Analog:
 - Ziel: `https://stargate-innovationhub.com/products/forevertold/`
