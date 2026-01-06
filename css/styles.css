@@ -841,14 +841,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .store-badge {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-3);
     padding: var(--space-3) var(--space-5);
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
+    min-width: 200px;
 }
 
 .store-badge:hover {
@@ -1349,6 +1351,7 @@ h1, h2, h3, h4, h5, h6 {
     
     .product-hero__stores {
         flex-direction: column;
+        align-items: center;
     }
 }
 
