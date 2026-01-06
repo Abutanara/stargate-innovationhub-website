@@ -1088,6 +1088,32 @@ h1, h2, h3, h4, h5, h6 {
     line-height: var(--line-height-relaxed);
 }
 
+/* Dezenter Disclaimer vor Footer */
+.disclaimer-footer {
+    padding: var(--space-4) var(--container-padding);
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid var(--color-border);
+}
+
+.disclaimer-footer__text {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: var(--line-height-relaxed);
+}
+
+.disclaimer-footer__text a {
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.disclaimer-footer__text a:hover {
+    color: var(--color-text-primary);
+}
+
 /* ========================================
    Footer
    ======================================== */
