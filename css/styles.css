@@ -822,7 +822,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 80px;
     height: 80px;
     margin-bottom: var(--space-6);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-lg);
 }
 
