@@ -4,6 +4,9 @@ node_modules/
 .env
 .env.local
 
+# Archiv-Ordner (embedded Git repositories, nicht als Submodules behandeln)
+Archiv/
+
 
 
 
