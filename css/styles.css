@@ -648,12 +648,9 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
 }
 
-/* Rounded corners for SmokeLess icon */
-.product-card--smokeless .product-card__icon,
-.product-hero--smokeless .product-hero__icon,
-.product-hero--smokeless .product-hero__image,
-.legal-app-section--smokeless .legal-app-section__icon {
-    border-radius: var(--radius-2xl);
+/* SmokeLess icons: match ForeverTold rounding */
+.product-card--smokeless .product-card__icon {
+    border-radius: var(--radius-xl);
 }
 
 .product-card__title {
