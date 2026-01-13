@@ -51,7 +51,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # default is 600000ms (10min); we raise it to survive Pages queue delays
-          timeout: 1800000
+        # NOTE: GitHub enforces a hard maximum of 600000ms for deploy-pages timeout.
 
