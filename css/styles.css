@@ -644,14 +644,11 @@ h1, h2, h3, h4, h5, h6 {
     width: 64px;
     height: 64px;
     margin: 0 auto var(--space-6);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-2xl);
     object-fit: cover;
 }
 
-/* SmokeLess icons: match ForeverTold rounding */
-.product-card--smokeless .product-card__icon {
-    border-radius: var(--radius-xl);
-}
+/* Product icons: consistent rounded corners (like SmokeLess) */
 
 .product-card__title {
     font-size: var(--font-size-2xl);
