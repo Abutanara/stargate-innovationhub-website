@@ -4,7 +4,7 @@
 Du hast jetzt **eine gemeinsame Website-Struktur** im Repo (Root = DE, `/en/` = EN, `/products/…` usw.). Ziel ist:
 - **Hauptdomain**: `stargate-innovationhub.com` zeigt auf GitHub Pages (neue Website).
 - **Optional**: `www.stargate-innovationhub.com` zeigt auch auf die Website (oder leitet auf die Hauptdomain um).
-- **Alte Domains/Subdomains** (z.B. `myquitly.stargate-innovationhub.com`, `forevertold.app`) sollen per **301** auf die neuen URLs weiterleiten.
+- **Alte Domains/Subdomains** (z.B. `myquitly.stargate-innovationhub.com` → jetzt `smokeless`, `forevertold.app`) sollen per **301** auf die neuen URLs weiterleiten.
 
 Wichtig: Für GitHub Pages mit Custom Domain musst du bei IONOS **DNS-Records setzen** (A/AAAA/CNAME). **Nameserver zu GitHub ändern ist normalerweise nicht nötig**.
 
@@ -65,7 +65,7 @@ GitHub prüft danach DNS. Das kann einige Minuten dauern.
 
 ## Schritt 3: IONOS – Hauptdomain von „Weiterleitung“ auf „DNS“ umstellen
 
-Du hast aktuell (laut Screenshot) die **Hauptdomain** als **Weiterleitung** auf `http://myquitly…` gesetzt. Das muss weg, sonst zeigt die Hauptdomain nie auf GitHub Pages.
+Du hast aktuell (laut Screenshot) die **Hauptdomain** als **Weiterleitung** auf eine alte Subdomain gesetzt. Das muss weg, sonst zeigt die Hauptdomain nie auf GitHub Pages.
 
 ### 3.1 Weiterleitung entfernen / Verwendungsart auf DNS stellen
 In IONOS:
@@ -121,11 +121,11 @@ Setze **keinen** CNAME für `@` (Apex). Bei DNS ist für die Hauptdomain üblich
 
 ## Schritt 5: Subdomains/alte Domains per 301 weiterleiten (IONOS)
 
-### 5.1 `myquitly.stargate-innovationhub.com` → neue MyQuitly-Seite
+### 5.1 `myquitly.stargate-innovationhub.com` → neue SmokeLess-Seite
 In IONOS:
 1. Subdomain auswählen (oder anlegen): `myquitly`
 2. Verwendungsart: **Weiterleitung**
-3. Ziel: `https://stargate-innovationhub.com/products/myquitly/`
+3. Ziel: `https://stargate-innovationhub.com/products/smokeless/`
 4. Typ: **301 permanent**
 5. Speichern
 
@@ -141,7 +141,7 @@ dig +short myquitly.stargate-innovationhub.com AAAA
 curl -I https://myquitly.stargate-innovationhub.com
 ```
 Erwartung:
-- Bei `curl -I` muss ein `301` kommen und ein `Location: https://stargate-innovationhub.com/products/myquitly/`
+- Bei `curl -I` muss ein `301` kommen und ein `Location: https://stargate-innovationhub.com/products/smokeless/`
 
 ### 5.2 `forevertold.app` → neue ForeverTold-Seite
 Analog:
@@ -179,7 +179,7 @@ Erwartung:
 - `https://stargate-innovationhub.com/`
 - `https://stargate-innovationhub.com/en/`
 - `https://stargate-innovationhub.com/products/`
-- `https://stargate-innovationhub.com/products/myquitly/`
+- `https://stargate-innovationhub.com/products/smokeless/`
 - `https://stargate-innovationhub.com/products/forevertold/`
 
 ---
@@ -198,7 +198,7 @@ Erwartung:
 - [ ] (optional) `www` CNAME → `<username>.github.io`
 
 ### IONOS (Redirects)
-- [ ] `myquitly.stargate-innovationhub.com` 301 → `/products/myquitly/`
+- [ ] `myquitly.stargate-innovationhub.com` 301 → `/products/smokeless/`
 - [ ] `forevertold.app` 301 → `/products/forevertold/`
 
 ---

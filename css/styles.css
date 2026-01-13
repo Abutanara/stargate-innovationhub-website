@@ -16,10 +16,10 @@
     /* Text Color from Logo */
     --color-logo-text: #49494a;
     
-    /* Product Colors - MyQuitly */
-    --color-myquitly: #20C997;
-    --color-myquitly-dark: #1BB887;
-    --color-myquitly-light: #2ED5A6;
+    /* Product Colors - SmokeLess */
+    --color-smokeless: #20C997;
+    --color-smokeless-dark: #1BB887;
+    --color-smokeless-light: #2ED5A6;
     
     /* Product Colors - ForeverTold */
     --color-forevertold: #E07A5F;
@@ -188,8 +188,8 @@ h1, h2, h3, h4, h5, h6 {
     background-clip: text;
 }
 
-.gradient-text--myquitly {
-    background: linear-gradient(135deg, var(--color-myquitly-light), var(--color-myquitly));
+.gradient-text--smokeless {
+    background: linear-gradient(135deg, var(--color-smokeless-light), var(--color-smokeless));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -389,12 +389,12 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--color-border-light);
 }
 
-.btn--myquitly {
-    background: linear-gradient(135deg, var(--color-myquitly), var(--color-myquitly-dark));
+.btn--smokeless {
+    background: linear-gradient(135deg, var(--color-smokeless), var(--color-smokeless-dark));
     box-shadow: 0 4px 14px rgba(32, 201, 151, 0.4);
 }
 
-.btn--myquitly:hover {
+.btn--smokeless:hover {
     box-shadow: 0 6px 20px rgba(32, 201, 151, 0.5);
 }
 
@@ -632,8 +632,8 @@ h1, h2, h3, h4, h5, h6 {
     transform: scaleX(1);
 }
 
-.product-card--myquitly {
-    --product-color: linear-gradient(90deg, var(--color-myquitly), var(--color-myquitly-dark));
+.product-card--smokeless {
+    --product-color: linear-gradient(90deg, var(--color-smokeless), var(--color-smokeless-dark));
 }
 
 .product-card--forevertold {
@@ -646,6 +646,14 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto var(--space-6);
     border-radius: var(--radius-xl);
     object-fit: cover;
+}
+
+/* Rounded corners for SmokeLess icon */
+.product-card--smokeless .product-card__icon,
+.product-hero--smokeless .product-hero__icon,
+.product-hero--smokeless .product-hero__image,
+.legal-app-section--smokeless .legal-app-section__icon {
+    border-radius: var(--radius-2xl);
 }
 
 .product-card__title {
@@ -791,7 +799,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 
-.product-hero--myquitly .hero__bg-gradient {
+.product-hero--smokeless .hero__bg-gradient {
     background: 
         radial-gradient(ellipse 80% 50% at 50% -20%, rgba(32, 201, 151, 0.2), transparent),
         radial-gradient(ellipse 60% 40% at 80% 80%, rgba(6, 182, 212, 0.1), transparent);
@@ -1009,8 +1017,8 @@ h1, h2, h3, h4, h5, h6 {
     border-left: 4px solid var(--app-color);
 }
 
-.legal-app-section--myquitly {
-    --app-color: var(--color-myquitly);
+.legal-app-section--smokeless {
+    --app-color: var(--color-smokeless);
 }
 
 .legal-app-section--forevertold {
@@ -1520,8 +1528,8 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(8px);
 }
 
-.benefit-item--myquitly:hover {
-    border-color: var(--color-myquitly);
+.benefit-item--smokeless:hover {
+    border-color: var(--color-smokeless);
     box-shadow: 0 0 30px rgba(32, 201, 151, 0.1);
 }
 
@@ -1541,8 +1549,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--font-size-xl);
 }
 
-.benefit-icon--myquitly {
-    background: linear-gradient(135deg, var(--color-myquitly), var(--color-myquitly-dark));
+.benefit-icon--smokeless {
+    background: linear-gradient(135deg, var(--color-smokeless), var(--color-smokeless-dark));
 }
 
 .benefit-icon--forevertold {
@@ -1596,9 +1604,9 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--font-size-2xl);
 }
 
-.trust-card__icon--myquitly {
+.trust-card__icon--smokeless {
     background: linear-gradient(135deg, rgba(32, 201, 151, 0.2), rgba(32, 201, 151, 0.1));
-    color: var(--color-myquitly);
+    color: var(--color-smokeless);
 }
 
 .trust-card__icon--forevertold {
@@ -1658,9 +1666,9 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--font-size-lg);
 }
 
-.target-item__icon--myquitly {
+.target-item__icon--smokeless {
     background: rgba(32, 201, 151, 0.15);
-    color: var(--color-myquitly);
+    color: var(--color-smokeless);
 }
 
 .target-item__icon--forevertold {
@@ -1729,8 +1737,8 @@ h1, h2, h3, h4, h5, h6 {
     display: none; /* Hidden as per design preference */
 }
 
-.demo-card__number--myquitly {
-    background: var(--color-myquitly);
+.demo-card__number--smokeless {
+    background: var(--color-smokeless);
     color: white;
 }
 
@@ -1750,8 +1758,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--font-size-2xl);
 }
 
-.demo-card__icon--myquitly {
-    background: linear-gradient(135deg, var(--color-myquitly), var(--color-myquitly-dark));
+.demo-card__icon--smokeless {
+    background: linear-gradient(135deg, var(--color-smokeless), var(--color-smokeless-dark));
 }
 
 .demo-card__icon--forevertold {
@@ -1784,7 +1792,7 @@ h1, h2, h3, h4, h5, h6 {
 .countdown-demo__number {
     font-size: var(--font-size-4xl);
     font-weight: 700;
-    color: var(--color-myquitly);
+    color: var(--color-smokeless);
     line-height: 1;
 }
 
@@ -1804,7 +1812,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .countdown-demo__bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--color-myquitly), var(--color-myquitly-light));
+    background: linear-gradient(90deg, var(--color-smokeless), var(--color-smokeless-light));
     border-radius: var(--radius-full);
     transition: width 0.5s ease;
 }
@@ -1844,7 +1852,7 @@ h1, h2, h3, h4, h5, h6 {
 .streak-header__number {
     font-size: var(--font-size-3xl);
     font-weight: 700;
-    color: var(--color-myquitly);
+    color: var(--color-smokeless);
 }
 
 .streak-header__label {
@@ -1873,12 +1881,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .streak-day.active {
-    background: var(--color-myquitly);
+    background: var(--color-smokeless);
     color: white;
 }
 
 .streak-day.today {
-    box-shadow: 0 0 0 2px var(--color-bg-card), 0 0 0 4px var(--color-myquitly);
+    box-shadow: 0 0 0 2px var(--color-bg-card), 0 0 0 4px var(--color-smokeless);
 }
 
 /* ForeverTold Demo Components */
@@ -2073,29 +2081,29 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-primary);
 }
 
-/* MyQuitly themed cookie banner */
-.cookie-banner--myquitly .cookie-btn--primary {
-    background: var(--color-myquitly);
+/* SmokeLess themed cookie banner */
+.cookie-banner--smokeless .cookie-btn--primary {
+    background: var(--color-smokeless);
 }
 
-.cookie-banner--myquitly .cookie-btn--primary:hover {
-    background: var(--color-myquitly-dark);
+.cookie-banner--smokeless .cookie-btn--primary:hover {
+    background: var(--color-smokeless-dark);
 }
 
-.cookie-banner--myquitly .cookie-banner__links a {
-    color: var(--color-myquitly);
+.cookie-banner--smokeless .cookie-banner__links a {
+    color: var(--color-smokeless);
 }
 
-.cookie-modal--myquitly .cookie-btn--primary {
-    background: var(--color-myquitly);
+.cookie-modal--smokeless .cookie-btn--primary {
+    background: var(--color-smokeless);
 }
 
-.cookie-modal--myquitly .cookie-btn--primary:hover {
-    background: var(--color-myquitly-dark);
+.cookie-modal--smokeless .cookie-btn--primary:hover {
+    background: var(--color-smokeless-dark);
 }
 
-.cookie-modal--myquitly .cookie-toggle__checkbox:checked + .cookie-toggle__slider {
-    background: var(--color-myquitly);
+.cookie-modal--smokeless .cookie-toggle__checkbox:checked + .cookie-toggle__slider {
+    background: var(--color-smokeless);
 }
 
 /* ForeverTold themed cookie banner */
@@ -2271,8 +2279,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .toggle-switch input:checked + .toggle-switch__slider {
-    background: var(--color-myquitly);
-    border-color: var(--color-myquitly);
+    background: var(--color-smokeless);
+    border-color: var(--color-smokeless);
 }
 
 .toggle-switch input:checked + .toggle-switch__slider::before {

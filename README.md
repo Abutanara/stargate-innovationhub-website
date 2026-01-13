@@ -10,7 +10,7 @@
 
 | Produkt | Beschreibung | Links |
 |---------|--------------|-------|
-| **MyQuitly** | Rauchen-aufhören App mit personalisierten Reduktionsplänen | [iOS](https://apps.apple.com/app/id6754508949) · [Android](https://play.google.com/store/apps/details?id=com.myquitly.quitsmoking) |
+| **SmokeLess** | Rauchen-aufhören App mit personalisierten Reduktionsplänen | [iOS](https://apps.apple.com/app/id6754508949) · [Android](https://play.google.com/store/apps/details?id=com.myquitly.quitsmoking) |
 | **ForeverTold** | Lebensgeschichten bewahren – Audio zu Büchern/Hörbüchern | [iOS](https://apps.apple.com/app/forevertold) · [Android](https://play.google.com/store/apps/details?id=app.forevertold) |
 
 ---
@@ -64,7 +64,7 @@ python3 -m http.server 8000
 │   └── products/
 ├── products/               # Produktseiten (DE)
 │   ├── index.html
-│   ├── myquitly/
+│   ├── smokeless/
 │   └── forevertold/
 ├── legal/                  # Rechtliche Seiten (DE)
 ├── css/styles.css          # Einheitliches Stylesheet
@@ -81,8 +81,8 @@ python3 -m http.server 8000
 
 | Sprache | Pfad | Beispiel |
 |---------|------|----------|
-| Deutsch (Standard) | `/` | `/products/myquitly/` |
-| Englisch | `/en/` | `/en/products/myquitly/` |
+| Deutsch (Standard) | `/` | `/products/smokeless/` |
+| Englisch | `/en/` | `/en/products/smokeless/` |
 
 **Wichtig:** Änderungen immer in **beiden** Sprachversionen durchführen!
 
@@ -108,7 +108,7 @@ python3 -m http.server 8000
 | Name | Hex | Verwendung |
 |------|-----|------------|
 | Brand | `#62c9f3` | Stargate Hauptfarbe |
-| MyQuitly | `#20C997` | Produkt-Akzent |
+| SmokeLess | `#20C997` | Produkt-Akzent |
 | ForeverTold | `#E07A5F` | Produkt-Akzent |
 | Background | `#0A0A0F` | Dark Theme Basis |
 
@@ -117,7 +117,7 @@ python3 -m http.server 8000
 ```css
 /* Farben */
 var(--color-brand)
-var(--color-myquitly)
+var(--color-smokeless)
 var(--color-forevertold)
 
 /* Spacing */

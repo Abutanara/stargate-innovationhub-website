@@ -22,7 +22,7 @@ stargate-innovationhub-website/
 │
 ├── 📁 /products/               # 🇩🇪 Produktseiten
 │   ├── index.html              # Produktübersicht
-│   ├── /myquitly/              # MyQuitly Produktseite
+│   ├── /smokeless/              # SmokeLess Produktseite
 │   └── /forevertold/           # ForeverTold Produktseite
 │
 ├── 📁 /legal/                  # 🇩🇪 Rechtliche Seiten
@@ -82,8 +82,8 @@ Spiegelt die deutsche Struktur 1:1.
 │   └── disclaimer.html         # Disclaimer
 └── /products/
     ├── index.html              # Products Overview
-    ├── /myquitly/
-    │   └── index.html          # MyQuitly Product Page
+    ├── /smokeless/
+    │   └── index.html          # SmokeLess Product Page
     └── /forevertold/
         └── index.html          # ForeverTold Product Page
 ```
@@ -95,7 +95,7 @@ Spiegelt die deutsche Struktur 1:1.
 | Pfad | Beschreibung |
 |------|--------------|
 | `/products/index.html` | Produktübersicht mit Karten für beide Apps |
-| `/products/myquitly/index.html` | Detaillierte MyQuitly Seite mit Features, FAQ, Downloads |
+| `/products/smokeless/index.html` | Detaillierte SmokeLess Seite mit Features, FAQ, Downloads |
 | `/products/forevertold/index.html` | Detaillierte ForeverTold Seite mit Features, FAQ, Downloads |
 
 ---
@@ -151,7 +151,7 @@ Spiegelt die deutsche Struktur 1:1.
 /* ======================================== */
 /*   6. Product-specific Styles              */
 /* ======================================== */
-/* - MyQuitly */
+/* - SmokeLess */
 /* - ForeverTold */
 
 /* ======================================== */
@@ -185,12 +185,12 @@ Spiegelt die deutsche Struktur 1:1.
 | Datei | Verwendung |
 |-------|------------|
 | `trancparent-logo.png` | Stargate Logo (transparent) |
-| `myquitly-icon.png` | MyQuitly App Icon |
+| `smokeless-icon.png` | SmokeLess App Icon |
 | `forevertold-icon.png` | ForeverTold App Icon |
 | `apple_logo3.png` | Apple Store Badge Icon |
 | `google_logo.png` | Google Play Badge Icon |
-| `Group 1_long.png` | MyQuitly App Screenshots (DE) |
-| `Group 2_long.png` | MyQuitly App Screenshots (EN) |
+| `Group 1_long.png` | SmokeLess App Screenshots (DE) |
+| `Group 2_long.png` | SmokeLess App Screenshots (EN) |
 | `forevertold-og.png` | ForeverTold OG Image |
 
 **Konventionen:**
@@ -214,7 +214,7 @@ Enthält die originalen Einzelwebsites vor der Zusammenführung:
 │   ├── /js/
 │   ├── /images/
 │   └── ...
-└── /myquitly-website/          # Ursprüngliche MyQuitly Website
+└── /myquitly-website/          # Ursprüngliche MyQuitly Website (Archiv, nicht bearbeiten)
     ├── index.html
     ├── styles.css
     ├── /de/
@@ -235,7 +235,7 @@ Deutsche Version (Standard)     Englische Version
 ├── index.html                 ├── index.html
 ├── /products/                 ├── /products/
 │   ├── index.html             │   ├── index.html
-│   ├── /myquitly/             │   ├── /myquitly/
+│   ├── /smokeless/             │   ├── /smokeless/
 │   └── /forevertold/          │   └── /forevertold/
 └── /legal/                    └── /legal/
     ├── imprint.html               ├── imprint.html
@@ -270,8 +270,8 @@ Deutsche Version (Standard)     Englische Version
 |-------|-----|
 | DE Startseite | `https://stargate-innovationhub.com/` |
 | EN Startseite | `https://stargate-innovationhub.com/en/` |
-| MyQuitly (DE) | `https://stargate-innovationhub.com/products/myquitly/` |
-| MyQuitly (EN) | `https://stargate-innovationhub.com/en/products/myquitly/` |
+| SmokeLess (DE) | `https://stargate-innovationhub.com/products/smokeless/` |
+| SmokeLess (EN) | `https://stargate-innovationhub.com/en/products/smokeless/` |
 | ForeverTold (DE) | `https://stargate-innovationhub.com/products/forevertold/` |
 | ForeverTold (EN) | `https://stargate-innovationhub.com/en/products/forevertold/` |
 | Datenschutz (DE) | `https://stargate-innovationhub.com/legal/privacy.html` |
@@ -297,5 +297,5 @@ Deutsche Version (Standard)     Englische Version
 ### Verzeichnis-Index
 
 Alle Unterordner mit `index.html` können ohne Dateiname aufgerufen werden:
-- `/products/myquitly/index.html` → `/products/myquitly/`
+- `/products/smokeless/index.html` → `/products/smokeless/`
 

@@ -32,7 +32,7 @@ Die erste Version der einheitlichen Stargate Innovationhub Unternehmenswebsite.
 #### Seiten
 - **Startseite** (`/`, `/en/`) - Unternehmensübersicht mit Hero, Produktvorstellung, Über uns, Kontakt
 - **Produktübersicht** (`/products/`, `/en/products/`)
-- **MyQuitly Produktseite** (`/products/myquitly/`, `/en/products/myquitly/`)
+- **SmokeLess Produktseite** (`/products/smokeless/`, `/en/products/smokeless/`)
 - **ForeverTold Produktseite** (`/products/forevertold/`, `/en/products/forevertold/`)
 - **Legal-Seiten:**
   - Impressum (`/legal/imprint.html`)
@@ -45,7 +45,7 @@ Die erste Version der einheitlichen Stargate Innovationhub Unternehmenswebsite.
 - CSS Custom Properties (Design Tokens) für Farben, Spacing, Typography
 - Dark Theme als Standard
 - BEM CSS Methodology
-- Produkt-spezifische Farbschemata (MyQuitly: Grün, ForeverTold: Terrakotta)
+- Produkt-spezifische Farbschemata (SmokeLess: Grün, ForeverTold: Terrakotta)
 
 #### Features
 - Cookie Consent Banner & Einstellungs-Modal
@@ -88,7 +88,7 @@ Die erste Version der einheitlichen Stargate Innovationhub Unternehmenswebsite.
 ## [1.1.0] - 2026-02-01
 
 ### ✨ Hinzugefügt
-- Neue FAQ-Sektion auf der MyQuitly-Seite
+- Neue FAQ-Sektion auf der SmokeLess-Seite
 - Dark/Light Mode Toggle
 
 ### 🔄 Geändert

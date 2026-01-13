@@ -9,11 +9,11 @@ This document outlines the recommended redirects when migrating from the old ind
 
 | Old URL | New URL | Redirect Type |
 |---------|---------|---------------|
-| `myquitly.stargate-innovationhub.com` | `stargate-innovationhub.com/products/myquitly/` | 301 (Permanent) |
-| `myquitly.stargate-innovationhub.com/en/` | `stargate-innovationhub.com/products/myquitly/` | 301 (Permanent) |
-| `myquitly.stargate-innovationhub.com/de/` | `stargate-innovationhub.com/products/myquitly/` | 301 (Permanent) |
-| `myquitly.stargate-innovationhub.com/en/privacy.html` | `stargate-innovationhub.com/legal/privacy.html#myquitly` | 301 (Permanent) |
-| `myquitly.stargate-innovationhub.com/en/terms.html` | `stargate-innovationhub.com/legal/terms.html#myquitly` | 301 (Permanent) |
+| `myquitly.stargate-innovationhub.com` | `stargate-innovationhub.com/products/smokeless/` | 301 (Permanent) |
+| `myquitly.stargate-innovationhub.com/en/` | `stargate-innovationhub.com/products/smokeless/` | 301 (Permanent) |
+| `myquitly.stargate-innovationhub.com/de/` | `stargate-innovationhub.com/products/smokeless/` | 301 (Permanent) |
+| `myquitly.stargate-innovationhub.com/en/privacy.html` | `stargate-innovationhub.com/legal/privacy.html#smokeless` | 301 (Permanent) |
+| `myquitly.stargate-innovationhub.com/en/terms.html` | `stargate-innovationhub.com/legal/terms.html#smokeless` | 301 (Permanent) |
 | `myquitly.stargate-innovationhub.com/en/imprint.html` | `stargate-innovationhub.com/legal/imprint.html` | 301 (Permanent) |
 | `forevertold.app` | `stargate-innovationhub.com/products/forevertold/` | 301 (Permanent) |
 | `forevertold.app/en/` | `stargate-innovationhub.com/products/forevertold/` | 301 (Permanent) |
@@ -27,17 +27,17 @@ This document outlines the recommended redirects when migrating from the old ind
 
 **Apache (.htaccess)**
 ```apache
-# Redirect old MyQuitly subdomain
+# Redirect old MyQuitly subdomain (now SmokeLess)
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^myquitly\.stargate-innovationhub\.com$ [NC]
-RewriteRule ^(.*)$ https://stargate-innovationhub.com/products/myquitly/$1 [R=301,L]
+RewriteRule ^(.*)$ https://stargate-innovationhub.com/products/smokeless/$1 [R=301,L]
 ```
 
 **Nginx**
 ```nginx
 server {
     server_name myquitly.stargate-innovationhub.com;
-    return 301 https://stargate-innovationhub.com/products/myquitly$request_uri;
+    return 301 https://stargate-innovationhub.com/products/smokeless$request_uri;
 }
 ```
 
@@ -46,8 +46,8 @@ If using services like Cloudflare, Netlify, or Vercel, you can configure redirec
 
 **Netlify (_redirects file)**
 ```
-# MyQuitly redirects
-https://myquitly.stargate-innovationhub.com/* https://stargate-innovationhub.com/products/myquitly/:splat 301!
+# SmokeLess redirects (formerly MyQuitly)
+https://myquitly.stargate-innovationhub.com/* https://stargate-innovationhub.com/products/smokeless/:splat 301!
 
 # ForeverTold redirects  
 https://forevertold.app/* https://stargate-innovationhub.com/products/forevertold/:splat 301!
@@ -59,7 +59,7 @@ https://forevertold.app/* https://stargate-innovationhub.com/products/forevertol
   "redirects": [
     {
       "source": "/(.*)",
-      "destination": "https://stargate-innovationhub.com/products/myquitly/$1",
+      "destination": "https://stargate-innovationhub.com/products/smokeless/$1",
       "permanent": true,
       "has": [
         { "type": "host", "value": "myquitly.stargate-innovationhub.com" }
@@ -77,8 +77,8 @@ https://forevertold.app/* https://stargate-innovationhub.com/products/forevertol
    - Google Play Console
    
 2. **Recommended URLs for App Stores:**
-   - MyQuitly Support: `https://stargate-innovationhub.com/products/myquitly/`
-   - MyQuitly Privacy: `https://stargate-innovationhub.com/legal/privacy.html#myquitly`
+   - SmokeLess Support: `https://stargate-innovationhub.com/products/smokeless/`
+   - SmokeLess Privacy: `https://stargate-innovationhub.com/legal/privacy.html#smokeless`
    - ForeverTold Support: `https://stargate-innovationhub.com/products/forevertold/`
    - ForeverTold Privacy: `https://stargate-innovationhub.com/legal/privacy.html#forevertold`
 
