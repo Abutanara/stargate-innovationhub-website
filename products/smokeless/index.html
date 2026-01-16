@@ -51,6 +51,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Resource Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://apps.apple.com">
+    <link rel="dns-prefetch" href="https://play.google.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/css/styles.css" as="style">
+    <link rel="preload" href="/images/SmokeLess_1024x1024.png" as="image" type="image/png">
+    
     <!-- Styles -->
     <link rel="stylesheet" href="/css/styles.css">
     
@@ -212,7 +222,10 @@
     <header class="header">
         <nav class="nav">
             <a href="/" class="nav__logo">
-                <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="nav__logo-img">
+                <picture>
+                    <source srcset="/images/trancparent-logo.webp" type="image/webp">
+                    <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="nav__logo-img" width="40" height="40">
+                </picture>
                 <span class="nav__logo-text">Stargate Innovationhub</span>
             </a>
             
@@ -264,14 +277,20 @@
                 
                 <div class="product-hero__stores">
                     <a href="https://apps.apple.com/app/id6754508949" class="store-badge" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/apple_logo3.png" alt="Apple" class="store-badge__icon-img">
+                        <picture>
+                            <source srcset="/images/apple_logo3.webp" type="image/webp">
+                            <img src="/images/apple_logo3.png" alt="Apple" class="store-badge__icon-img" loading="lazy" width="30" height="30">
+                        </picture>
                         <span class="store-badge__text">
                             <span class="store-badge__label">Jetzt herunterladen</span>
                             <span class="store-badge__name">im App Store</span>
                         </span>
                     </a>
                     <a href="https://play.google.com/store/apps/details?id=com.myquitly.quitsmoking" class="store-badge" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/google_logo.png" alt="Google Play" class="store-badge__icon-img">
+                        <picture>
+                            <source srcset="/images/google_logo.webp" type="image/webp">
+                            <img src="/images/google_logo.png" alt="Google Play" class="store-badge__icon-img" loading="lazy" width="30" height="30">
+                        </picture>
                         <span class="store-badge__text">
                             <span class="store-badge__label">Jetzt herunterladen</span>
                             <span class="store-badge__name">im Play Store</span>
@@ -281,7 +300,10 @@
             </div>
             
             <div class="product-hero__visual">
-                <img src="/images/smokeless-icon.png" alt="SmokeLess App Icon" class="product-hero__image" style="max-width: 280px;">
+                <picture>
+                    <source srcset="/images/smokeless-icon.webp" type="image/webp">
+                    <img src="/images/smokeless-icon.png" alt="SmokeLess App Icon" class="product-hero__image" style="max-width: 280px;" fetchpriority="high" width="280" height="280">
+                </picture>
             </div>
         </div>
     </section>
@@ -289,8 +311,14 @@
     <!-- App Screenshot Showcase -->
     <div class="app-showcase">
         <div class="app-showcase__track">
-            <img src="/images/Group 1_long.png" alt="SmokeLess App Screenshots" class="app-showcase__image">
-            <img src="/images/Group 1_long.png" alt="SmokeLess App Screenshots" class="app-showcase__image">
+            <picture>
+                <source srcset="/images/Group 1_long.webp" type="image/webp">
+                <img src="/images/Group 1_long.png" alt="SmokeLess App Screenshots" class="app-showcase__image" loading="lazy" width="1200" height="800">
+            </picture>
+            <picture>
+                <source srcset="/images/Group 1_long.webp" type="image/webp">
+                <img src="/images/Group 1_long.png" alt="SmokeLess App Screenshots" class="app-showcase__image" loading="lazy" width="1200" height="800">
+            </picture>
         </div>
     </div>
     
@@ -633,14 +661,20 @@
                 </p>
                 <div class="product-hero__stores" style="justify-content: center; margin-top: var(--space-8);">
                     <a href="https://apps.apple.com/app/id6754508949" class="store-badge" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/apple_logo3.png" alt="Apple" class="store-badge__icon-img">
+                        <picture>
+                            <source srcset="/images/apple_logo3.webp" type="image/webp">
+                            <img src="/images/apple_logo3.png" alt="Apple" class="store-badge__icon-img" loading="lazy" width="30" height="30">
+                        </picture>
                         <span class="store-badge__text">
                             <span class="store-badge__label">Jetzt herunterladen</span>
                             <span class="store-badge__name">im App Store</span>
                         </span>
                     </a>
                     <a href="https://play.google.com/store/apps/details?id=com.myquitly.quitsmoking" class="store-badge" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/google_logo.png" alt="Google Play" class="store-badge__icon-img">
+                        <picture>
+                            <source srcset="/images/google_logo.webp" type="image/webp">
+                            <img src="/images/google_logo.png" alt="Google Play" class="store-badge__icon-img" loading="lazy" width="30" height="30">
+                        </picture>
                         <span class="store-badge__text">
                             <span class="store-badge__label">Jetzt herunterladen</span>
                             <span class="store-badge__name">im Play Store</span>
@@ -682,7 +716,10 @@
             <div class="footer__grid">
                 <div class="footer__brand">
                     <a href="/" class="footer__logo">
-                        <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="footer__logo-img">
+                        <picture>
+                            <source srcset="/images/trancparent-logo.webp" type="image/webp">
+                            <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="footer__logo-img" loading="lazy" width="40" height="40">
+                        </picture>
                         <span class="nav__logo-text">Stargate Innovationhub</span>
                     </a>
                     <p class="footer__tagline">

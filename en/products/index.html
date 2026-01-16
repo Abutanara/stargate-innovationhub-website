@@ -26,6 +26,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Resource Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/css/styles.css" as="style">
+    
     <!-- Styles -->
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -34,7 +41,10 @@
     <header class="header">
         <nav class="nav">
             <a href="/en/" class="nav__logo">
-                <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="nav__logo-img">
+                <picture>
+                    <source srcset="/images/trancparent-logo.webp" type="image/webp">
+                    <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="nav__logo-img">
+                </picture>
                 <span class="nav__logo-text">Stargate Innovationhub</span>
             </a>
             
@@ -88,7 +98,10 @@
             <div class="products-grid" style="gap: var(--space-12);">
                 <!-- SmokeLess Card -->
                 <article class="product-card product-card--smokeless" style="padding: var(--space-10);">
-                    <img src="/images/smokeless-icon.png" alt="SmokeLess App Icon" class="product-card__icon" style="width: 80px; height: 80px;">
+                    <picture>
+                        <source srcset="/images/smokeless-icon.webp" type="image/webp">
+                        <img src="/images/smokeless-icon.png" alt="SmokeLess App Icon" class="product-card__icon" style="width: 80px; height: 80px;">
+                    </picture>
                     <h2 class="product-card__title" style="font-size: var(--font-size-3xl);">
                         <span class="gradient-text--smokeless">SmokeLess</span>
                     </h2>
@@ -128,7 +141,10 @@
                 
                 <!-- ForeverTold Card -->
                 <article class="product-card product-card--forevertold" style="padding: var(--space-10);">
-                    <img src="/images/forevertold-icon.png" alt="ForeverTold App Icon" class="product-card__icon" style="width: 80px; height: 80px;">
+                    <picture>
+                        <source srcset="/images/forevertold-icon.webp" type="image/webp">
+                        <img src="/images/forevertold-icon.png" alt="ForeverTold App Icon" class="product-card__icon" style="width: 80px; height: 80px;">
+                    </picture>
                     <h2 class="product-card__title" style="font-size: var(--font-size-3xl);">
                         <span class="gradient-text--forevertold">ForeverTold</span>
                     </h2>
@@ -188,7 +204,10 @@
             <div class="footer__grid">
                 <div class="footer__brand">
                     <a href="/en/" class="footer__logo">
-                        <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="footer__logo-img">
+                        <picture>
+                            <source srcset="/images/trancparent-logo.webp" type="image/webp">
+                            <img src="/images/trancparent-logo.png" alt="Stargate Innovationhub" class="footer__logo-img">
+                        </picture>
                         <span class="nav__logo-text">Stargate Innovationhub</span>
                     </a>
                     <p class="footer__tagline">
