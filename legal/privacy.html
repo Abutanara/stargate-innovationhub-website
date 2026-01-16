@@ -71,7 +71,7 @@
             </nav>
             
             <h1 class="legal-page__title">Datenschutzerklärung</h1>
-            <p class="legal-page__updated">Stand: 5. Januar 2026</p>
+            <p class="legal-page__updated">Stand: 16. Januar 2026</p>
             
             <div class="legal-page__content">
                 <!-- Allgemeiner Teil -->
@@ -205,8 +205,8 @@
                         <h3>Daten, die wir in ForeverTold erheben</h3>
                         <p>Zusätzlich zu den gemeinsamen Daten erhebt ForeverTold:</p>
                         <ul>
-                            <li><strong>Audioaufnahmen:</strong> Sprachaufnahmen Ihrer Geschichten</li>
-                            <li><strong>Transkriptionen:</strong> Textversionen Ihrer Audioaufnahmen</li>
+                            <li><strong>Audioaufnahmen:</strong> Sprachaufnahmen deiner Geschichten</li>
+                            <li><strong>Transkriptionen:</strong> Textversionen deiner Audioaufnahmen</li>
                             <li><strong>Story-Metadaten:</strong> Titel, Kapitelnamen, Mitwirkende-Informationen</li>
                             <li><strong>Sharing-Daten:</strong> Einladungscodes, Zugriffsberechtigungen für Mitarbeiter</li>
                             <li><strong>Export-Daten:</strong> Generierte PDFs und Hörbücher</li>
@@ -214,7 +214,7 @@
                         
                         <h3>Wie wir ForeverTold-Daten verwenden</h3>
                         <ul>
-                            <li>Um Ihre Geschichten zu speichern und zu organisieren</li>
+                            <li>Um deine Geschichten zu speichern und zu organisieren</li>
                             <li>Um Audioaufnahmen in Text zu transkribieren</li>
                             <li>Um PDF-Bücher und Hörbücher zu generieren</li>
                             <li>Um das Teilen mit eingeladenen Mitarbeitern zu ermöglichen</li>
@@ -223,23 +223,43 @@
                         <h3>Drittanbieter-Dienste für ForeverTold</h3>
                         <p>Zusätzlich zur gemeinsamen Infrastruktur nutzt ForeverTold:</p>
                         <ul>
-                            <li><strong>Supabase Database:</strong> Speicherung Ihrer Geschichten und Metadaten</li>
-                            <li><strong>Supabase Storage:</strong> Speicherung von Audioaufnahmen und generierten Dateien (Server in der EU)</li>
-                            <li><strong>OpenAI Whisper (OpenAI LLC):</strong> Automatische Transkription von Audioaufnahmen in Text. Audiodaten werden temporär verarbeitet und nicht dauerhaft gespeichert. <a href="https://openai.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung</a></li>
-                            <li><strong>OpenAI TTS (OpenAI LLC):</strong> Text-to-Speech für die Generierung von Hörbuch-Stimmen. <a href="https://openai.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung</a></li>
-                            <li><strong>Fish Audio (FishAI):</strong> KI-basiertes Stimmenklonen für personalisierte Hörbücher. Stimmproben werden nur mit Ihrer ausdrücklichen Einwilligung verarbeitet. <a href="https://fish.audio/privacy" target="_blank" rel="noopener">Datenschutzerklärung</a></li>
+                            <li><strong>Supabase Database:</strong> Speicherung deiner Geschichten und Metadaten</li>
+                            <li><strong>Supabase Storage:</strong> Speicherung von Audioaufnahmen und generierten Dateien in privaten Buckets (<code>recordings-private</code>, <code>exports-private</code>). Server-Standort: Frankfurt, Deutschland (EU). Zugriff nur über signierte URLs mit Ablaufdatum.</li>
+                            <li><strong>OpenAI Whisper (OpenAI LLC):</strong> Automatische Transkription von Audioaufnahmen in Text. Audiodaten werden temporär verarbeitet und <strong>nach maximal 30 Tagen automatisch von OpenAI gelöscht</strong>. OpenAI verwendet deine Daten <strong>nicht</strong> zum Trainieren von KI-Modellen (Zero Data Retention Policy). <a href="https://openai.com/enterprise-privacy" target="_blank">Datenschutzerklärung</a></li>
+                            <li><strong>OpenAI TTS (OpenAI LLC):</strong> Text-to-Speech für die Generierung von Hörbuch-Stimmen. <a href="https://openai.com/enterprise-privacy" target="_blank">Datenschutzerklärung</a></li>
+                            <li><strong>Fish Audio (FishAI):</strong> KI-basiertes Stimmenklonen für personalisierte Hörbücher. Stimmproben werden nur mit deiner ausdrücklichen Einwilligung verarbeitet. <a href="https://fish.audio/privacy" target="_blank">Datenschutzerklärung</a></li>
                         </ul>
-                        <p>
-                            Audiodaten werden verschlüsselt übertragen. Bei der Transkription und Stimmgenerierung werden 
-                            Daten temporär verarbeitet und nach Abschluss nicht dauerhaft von Drittanbietern gespeichert.
-                        </p>
+                        
+                        <h4>Speicherort und Sicherheit</h4>
+                        <ul>
+                            <li><strong>Speicherort:</strong> Alle ForeverTold-Daten werden auf Supabase-Servern in Frankfurt (Deutschland, EU) gespeichert.</li>
+                            <li><strong>Verschlüsselung:</strong> Audioaufnahmen und Daten werden während der Übertragung (TLS 1.3) und im Ruhezustand verschlüsselt.</li>
+                            <li><strong>Zugriffskontrolle:</strong> Nur du und von dir eingeladene Projektmitglieder haben Zugriff auf deine Geschichten (Row Level Security).</li>
+                        </ul>
+                        
+                        <p>Audiodaten werden verschlüsselt übertragen. Bei der Transkription und Stimmgenerierung werden Daten temporär verarbeitet und nach Abschluss nicht dauerhaft von Drittanbietern gespeichert.</p>
                         
                         <h3>Datenspeicherung für ForeverTold</h3>
-                        <p>
-                            Ihre Geschichten und Aufnahmen werden gespeichert, solange Ihr Konto aktiv ist. 
-                            Wir empfehlen, Ihre Geschichten regelmäßig zu exportieren. Bei Kontolöschung werden alle Daten 
-                            einschließlich Audioaufnahmen und Transkriptionen dauerhaft gelöscht.
-                        </p>
+                        <p>Deine Geschichten und Aufnahmen werden gespeichert, solange dein Konto aktiv ist. Wir empfehlen, deine Geschichten regelmäßig zu exportieren. Bei Kontolöschung werden alle Daten einschließlich Audioaufnahmen und Transkriptionen dauerhaft gelöscht.</p>
+                        <p><strong>Soft-Delete-Periode:</strong> Gelöschte Daten werden 30 Tage aufbewahrt und können in diesem Zeitraum wiederhergestellt werden. Nach 30 Tagen erfolgt die permanente Löschung.</p>
+                        
+                        <h3>DSGVO-Rechte für ForeverTold-Nutzer</h3>
+                        <p>Zusätzlich zu den allgemeinen Rechten (siehe Abschnitt 4) bietet ForeverTold folgende DSGVO-konforme Funktionen:</p>
+                        <ul>
+                            <li><strong>Datenauskunft:</strong> In der App unter Einstellungen → "Meine Daten herunterladen" kannst du eine vollständige Kopie aller deiner Daten als JSON-Datei exportieren (Projekte, Aufnahmen, Transkripte).</li>
+                            <li><strong>Löschung:</strong> Über Einstellungen → "Konto & Daten löschen" kannst du dein Konto und alle Daten selbst löschen. Gelöschte Daten werden nach 30 Tagen (Soft-Delete-Periode) permanent entfernt.</li>
+                            <li><strong>Aufnahme-Consent:</strong> Beim ersten Recording wirst du über die Verarbeitung deiner Audioaufnahmen informiert und kannst der Datenschutzerklärung zustimmen.</li>
+                        </ul>
+                        
+                        <h3>Einwilligung und Widerruf</h3>
+                        <p>Die Verarbeitung deiner Audio- und Transkriptionsdaten erfolgt auf Grundlage deiner ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Du wirst beim ersten Recording über die Datenverarbeitung informiert.</p>
+                        <p>Du kannst deine Einwilligung jederzeit widerrufen, indem du:</p>
+                        <ul>
+                            <li>Einzelne Aufnahmen oder Projekte in der App löschst</li>
+                            <li>Dein gesamtes Konto löschst (Einstellungen → "Konto & Daten löschen")</li>
+                            <li>Uns per E-Mail kontaktierst: <a href="mailto:info@stargate-innovationhub.com">info@stargate-innovationhub.com</a></li>
+                        </ul>
+                        <p><strong>Wichtig:</strong> Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung.</p>
                     </div>
                 </section>
                 
