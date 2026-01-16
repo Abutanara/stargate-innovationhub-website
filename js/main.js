@@ -213,6 +213,10 @@ window.StargateHub = {
             localStorage.setItem('cookieAnalytics', 'true');
             localStorage.setItem('cookieMarketing', 'true');
             hideBanner();
+            // Initialize analytics after consent
+            if (typeof updateAnalyticsConsent === 'function') {
+                updateAnalyticsConsent();
+            }
         });
     }
     
@@ -223,6 +227,10 @@ window.StargateHub = {
             localStorage.setItem('cookieAnalytics', 'false');
             localStorage.setItem('cookieMarketing', 'false');
             hideBanner();
+            // Update analytics consent (will disable)
+            if (typeof updateAnalyticsConsent === 'function') {
+                updateAnalyticsConsent();
+            }
         });
     }
     
@@ -254,6 +262,10 @@ window.StargateHub = {
             localStorage.setItem('cookieAnalytics', analyticsToggle ? analyticsToggle.checked.toString() : 'false');
             localStorage.setItem('cookieMarketing', marketingToggle ? marketingToggle.checked.toString() : 'false');
             hideModal();
+            // Update analytics based on new preferences
+            if (typeof updateAnalyticsConsent === 'function') {
+                updateAnalyticsConsent();
+            }
         });
     }
 })();
