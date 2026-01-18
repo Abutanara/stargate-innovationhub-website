@@ -2306,3 +2306,49 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 160px;
 }
 
+/* ========================================
+   Store Badge Coming Soon Overlay
+   ======================================== */
+.store-badge-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.store-badge-wrapper .store-badge {
+    pointer-events: none;
+    opacity: 0.5;
+    filter: grayscale(30%);
+}
+
+.store-badge-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: var(--radius-lg);
+    z-index: 2;
+}
+
+.store-badge-overlay__text {
+    font-family: var(--font-display);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-forevertold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: var(--space-2) var(--space-4);
+    background: rgba(224, 122, 95, 0.15);
+    border: 1px solid rgba(224, 122, 95, 0.3);
+    border-radius: var(--radius-full);
+}
+
+/* SmokeLess variant */
+.store-badge-overlay--smokeless .store-badge-overlay__text {
+    color: var(--color-smokeless);
+    background: rgba(32, 201, 151, 0.15);
+    border-color: rgba(32, 201, 151, 0.3);
+}
