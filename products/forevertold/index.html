@@ -853,6 +853,10 @@
                 localStorage.setItem('cookieAnalytics', 'true');
                 localStorage.setItem('cookieMarketing', 'true');
                 banner.classList.remove('visible');
+                // Initialize analytics after consent
+                if (typeof updateAnalyticsConsent === 'function') {
+                    updateAnalyticsConsent();
+                }
             });
             
             // Reject non-essential cookies
@@ -861,6 +865,10 @@
                 localStorage.setItem('cookieAnalytics', 'false');
                 localStorage.setItem('cookieMarketing', 'false');
                 banner.classList.remove('visible');
+                // Update analytics consent (will disable)
+                if (typeof updateAnalyticsConsent === 'function') {
+                    updateAnalyticsConsent();
+                }
             });
             
             // Open settings modal
@@ -890,6 +898,10 @@
                 localStorage.setItem('cookieMarketing', marketingCheckbox.checked ? 'true' : 'false');
                 modal.classList.remove('visible');
                 banner.classList.remove('visible');
+                // Update analytics based on new preferences
+                if (typeof updateAnalyticsConsent === 'function') {
+                    updateAnalyticsConsent();
+                }
             });
         });
     </script>
