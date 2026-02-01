@@ -26,6 +26,11 @@
     --color-forevertold-dark: #C45D42;
     --color-forevertold-light: #F4B5A4;
     
+    /* Product Colors - Weddy */
+    --color-weddy: #A78B7B;
+    --color-weddy-dark: #8B7265;
+    --color-weddy-light: #C4A99A;
+    
     /* Neutral Colors - Dark Theme */
     --color-bg-primary: #0A0A0F;
     --color-bg-secondary: #12121A;
@@ -197,6 +202,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .gradient-text--forevertold {
     background: linear-gradient(135deg, var(--color-forevertold-light), var(--color-forevertold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text--weddy {
+    background: linear-gradient(135deg, var(--color-weddy-light), var(--color-weddy));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -407,6 +419,15 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 20px rgba(224, 122, 95, 0.5);
 }
 
+.btn--weddy {
+    background: linear-gradient(135deg, var(--color-weddy), var(--color-weddy-dark));
+    box-shadow: 0 4px 14px rgba(167, 139, 123, 0.4);
+}
+
+.btn--weddy:hover {
+    box-shadow: 0 6px 20px rgba(167, 139, 123, 0.5);
+}
+
 .btn--large {
     padding: var(--space-4) var(--space-8);
     font-size: var(--font-size-lg);
@@ -563,6 +584,12 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
+@media (min-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 600px) {
     .products-grid {
         grid-template-columns: 1fr;
@@ -640,6 +667,10 @@ h1, h2, h3, h4, h5, h6 {
     --product-color: linear-gradient(90deg, var(--color-forevertold), var(--color-forevertold-dark));
 }
 
+.product-card--weddy {
+    --product-color: linear-gradient(90deg, var(--color-weddy), var(--color-weddy-dark));
+}
+
 .product-card__icon {
     width: 64px;
     height: 64px;
@@ -711,6 +742,14 @@ h1, h2, h3, h4, h5, h6 {
     grid-column: 1 / -1;
     max-width: calc(50% - var(--space-3));
     margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .pricing-cards {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-4) !important;
+        max-width: 400px !important;
+    }
 }
 
 @media (max-width: 600px) {
@@ -803,6 +842,12 @@ h1, h2, h3, h4, h5, h6 {
     background: 
         radial-gradient(ellipse 80% 50% at 50% -20%, rgba(224, 122, 95, 0.2), transparent),
         radial-gradient(ellipse 60% 40% at 80% 80%, rgba(242, 204, 143, 0.1), transparent);
+}
+
+.product-hero--weddy .hero__bg-gradient {
+    background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(167, 139, 123, 0.2), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(196, 169, 154, 0.1), transparent);
 }
 
 .product-hero__container {
@@ -1533,6 +1578,11 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 30px rgba(224, 122, 95, 0.1);
 }
 
+.benefit-item--weddy:hover {
+    border-color: var(--color-weddy);
+    box-shadow: 0 0 30px rgba(167, 139, 123, 0.1);
+}
+
 .benefit-icon {
     flex-shrink: 0;
     width: 48px;
@@ -1607,6 +1657,11 @@ h1, h2, h3, h4, h5, h6 {
 .trust-card__icon--forevertold {
     background: linear-gradient(135deg, rgba(224, 122, 95, 0.2), rgba(224, 122, 95, 0.1));
     color: var(--color-forevertold);
+}
+
+.trust-card__icon--weddy {
+    background: linear-gradient(135deg, rgba(167, 139, 123, 0.2), rgba(167, 139, 123, 0.1));
+    color: var(--color-weddy);
 }
 
 .trust-card h3 {
@@ -1742,6 +1797,11 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+.demo-card__number--weddy {
+    background: var(--color-weddy);
+    color: white;
+}
+
 .demo-card__icon {
     width: 56px;
     height: 56px;
@@ -1759,6 +1819,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .demo-card__icon--forevertold {
     background: linear-gradient(135deg, var(--color-forevertold), var(--color-forevertold-dark));
+}
+
+.demo-card__icon--weddy {
+    background: linear-gradient(135deg, var(--color-weddy), var(--color-weddy-dark));
 }
 
 .demo-card h3 {
@@ -1967,8 +2031,17 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 30px rgba(224, 122, 95, 0.1);
 }
 
+.benefit-item--weddy:hover {
+    border-color: var(--color-weddy);
+    box-shadow: 0 0 30px rgba(167, 139, 123, 0.1);
+}
+
 .benefit-icon--forevertold {
     background: linear-gradient(135deg, var(--color-forevertold), var(--color-forevertold-dark));
+}
+
+.benefit-icon--weddy {
+    background: linear-gradient(135deg, var(--color-weddy), var(--color-weddy-dark));
 }
 
 /* ForeverTold Target Items */
@@ -1977,9 +2050,20 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-forevertold);
 }
 
+/* Weddy Target Items */
+.target-item__icon--weddy {
+    background: rgba(167, 139, 123, 0.1);
+    color: var(--color-weddy);
+}
+
 /* ForeverTold Trust Cards */
 .trust-card__icon--forevertold {
     background: linear-gradient(135deg, var(--color-forevertold), var(--color-forevertold-dark));
+}
+
+/* Weddy Trust Cards */
+.trust-card__icon--weddy {
+    background: linear-gradient(135deg, var(--color-weddy), var(--color-weddy-dark));
 }
 
 /* ========================================
