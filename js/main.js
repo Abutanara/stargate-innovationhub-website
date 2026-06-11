@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // No dynamic JavaScript is needed for main navigation highlighting
     
     // Legal page navigation highlighting
+    const currentPath = window.location.pathname;
     const legalNavLinks = document.querySelectorAll('.legal-nav__link');
     if (legalNavLinks.length > 0) {
         legalNavLinks.forEach(link => {
@@ -127,6 +128,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Track store/app CTA clicks (App Store, Play Store, Weddy webapp)
+    document.querySelectorAll('a.store-badge').forEach(badge => {
+        badge.addEventListener('click', function() {
+            if (typeof trackAppStoreClick !== 'function') return;
+            const href = this.href || '';
+            const store = href.includes('apps.apple.com') ? 'ios'
+                : href.includes('play.google.com') ? 'android'
+                : 'web';
+            const appName = (document.querySelector('meta[property="og:title"]')?.content || document.title)
+                .split('|')[0].trim();
+            trackAppStoreClick(store, appName);
+        });
+    });
+
     // Copy to clipboard functionality (for email links etc.)
     document.querySelectorAll('[data-copy]').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -171,8 +186,8 @@ window.StargateHub = {
     const settingsBtn = document.getElementById('cookie-settings');
     const modalCloseBtn = document.getElementById('cookie-modal-close');
     const saveSettingsBtn = document.getElementById('cookie-save-settings');
-    const analyticsToggle = document.getElementById('analytics-cookies');
-    const marketingToggle = document.getElementById('marketing-cookies');
+    // Product pages use id="cookie-analytics", the main pages id="analytics-cookies"
+    const analyticsToggle = document.getElementById('analytics-cookies') || document.getElementById('cookie-analytics');
     
     function showBanner() {
         setTimeout(() => banner.classList.add('visible'), 500);
@@ -188,9 +203,6 @@ window.StargateHub = {
             // Initialize toggles from localStorage
             if (analyticsToggle) {
                 analyticsToggle.checked = localStorage.getItem('cookieAnalytics') === 'true';
-            }
-            if (marketingToggle) {
-                marketingToggle.checked = localStorage.getItem('cookieMarketing') === 'true';
             }
         }
     }
@@ -211,7 +223,6 @@ window.StargateHub = {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'accepted');
             localStorage.setItem('cookieAnalytics', 'true');
-            localStorage.setItem('cookieMarketing', 'true');
             hideBanner();
             // Initialize analytics after consent
             if (typeof updateAnalyticsConsent === 'function') {
@@ -225,7 +236,6 @@ window.StargateHub = {
         rejectBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'rejected');
             localStorage.setItem('cookieAnalytics', 'false');
-            localStorage.setItem('cookieMarketing', 'false');
             hideBanner();
             // Update analytics consent (will disable)
             if (typeof updateAnalyticsConsent === 'function') {
@@ -260,7 +270,6 @@ window.StargateHub = {
         saveSettingsBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'custom');
             localStorage.setItem('cookieAnalytics', analyticsToggle ? analyticsToggle.checked.toString() : 'false');
-            localStorage.setItem('cookieMarketing', marketingToggle ? marketingToggle.checked.toString() : 'false');
             hideModal();
             // Update analytics based on new preferences
             if (typeof updateAnalyticsConsent === 'function') {

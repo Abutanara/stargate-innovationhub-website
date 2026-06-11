@@ -15,34 +15,16 @@ const ANALYTICS_CONFIG = {
 function hasAnalyticsConsent() {
     const consent = localStorage.getItem('cookieConsent');
     const analyticsCookies = localStorage.getItem('cookieAnalytics');
-    
+
     // Check if user accepted all cookies or specifically analytics
     if (consent === 'accepted') {
         return true;
     }
-    
+
     if (consent === 'custom' && analyticsCookies === 'true') {
         return true;
     }
-    
-    return false;
-}
 
-/**
- * Check if user has consented to marketing cookies
- */
-function hasMarketingConsent() {
-    const consent = localStorage.getItem('cookieConsent');
-    const marketingCookies = localStorage.getItem('cookieMarketing');
-    
-    if (consent === 'accepted') {
-        return true;
-    }
-    
-    if (consent === 'custom' && marketingCookies === 'true') {
-        return true;
-    }
-    
     return false;
 }
 
@@ -50,17 +32,12 @@ function hasMarketingConsent() {
  * Initialize Google Analytics 4 (GA4)
  */
 function initGoogleAnalytics() {
-    console.log('🚀 initGoogleAnalytics called');
-    console.log('🚀 Analytics ID:', ANALYTICS_CONFIG.googleAnalyticsId);
-    
     if (!ANALYTICS_CONFIG.googleAnalyticsId) {
-        console.warn('⚠️ Google Analytics ID not configured');
         return;
     }
 
     // Check if gtag is already loaded (avoid duplicate loading)
     if (window.gtag && window.dataLayer) {
-        console.log('ℹ️ Google Analytics already initialized');
         return;
     }
 
@@ -76,7 +53,6 @@ function initGoogleAnalytics() {
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_CONFIG.googleAnalyticsId}`;
     script.onload = function() {
-        console.log('✅ Google Analytics script loaded');
         gtag('js', new Date());
         gtag('config', ANALYTICS_CONFIG.googleAnalyticsId, {
             'anonymize_ip': true, // IP anonymization for GDPR compliance
@@ -84,11 +60,6 @@ function initGoogleAnalytics() {
             'page_path': window.location.pathname,
             'page_title': document.title
         });
-        console.log('✅ Google Analytics initialized with ID:', ANALYTICS_CONFIG.googleAnalyticsId);
-        console.log('📊 dataLayer:', window.dataLayer);
-    };
-    script.onerror = function() {
-        console.error('❌ Failed to load Google Analytics script');
     };
     document.head.appendChild(script);
 }
@@ -97,20 +68,11 @@ function initGoogleAnalytics() {
  * Track page view
  */
 function trackPageView() {
-    console.log('📄 trackPageView called');
-    console.log('📄 Has consent:', hasAnalyticsConsent());
-    console.log('📄 gtag available:', typeof window.gtag !== 'undefined');
-    
     if (hasAnalyticsConsent() && window.gtag) {
-        // GA4 automatically tracks page views when config is called
-        // But we can also send a manual page_view event
         gtag('event', 'page_view', {
             page_path: window.location.pathname,
             page_title: document.title
         });
-        console.log('✅ Page view tracked:', window.location.pathname);
-    } else {
-        console.warn('⚠️ Cannot track page view - missing consent or gtag');
     }
 }
 
@@ -128,7 +90,7 @@ function trackEvent(eventName, eventParams = {}) {
  */
 function trackAppStoreClick(store, appName) {
     trackEvent('app_store_click', {
-        store: store, // 'ios' or 'android'
+        store: store, // 'ios', 'android' or 'web'
         app_name: appName
     });
 }
@@ -137,21 +99,13 @@ function trackAppStoreClick(store, appName) {
  * Initialize all analytics tools based on consent
  */
 function initAnalytics() {
-    console.log('🔍 initAnalytics called');
-    console.log('🔍 Cookie Consent:', localStorage.getItem('cookieConsent'));
-    console.log('🔍 Analytics Cookies:', localStorage.getItem('cookieAnalytics'));
-    console.log('🔍 Has Analytics Consent:', hasAnalyticsConsent());
-    
     // Only initialize if user has given consent
     if (hasAnalyticsConsent()) {
-        console.log('✅ User has consented, initializing Google Analytics...');
         initGoogleAnalytics();
         // Track initial page view with a small delay to ensure gtag is loaded
         setTimeout(() => {
             trackPageView();
         }, 1000);
-    } else {
-        console.log('❌ User has not consented to analytics cookies');
     }
 }
 
@@ -160,12 +114,9 @@ function initAnalytics() {
  * Call this function when user updates cookie preferences
  */
 function updateAnalyticsConsent() {
-    console.log('🔄 updateAnalyticsConsent called');
-    
     // Remove existing scripts (if any)
     const existingScripts = document.querySelectorAll('script[src*="googletagmanager"]');
     existingScripts.forEach(script => {
-        console.log('🗑️ Removing existing script:', script.src);
         script.remove();
     });
 
@@ -188,15 +139,10 @@ window.trackEvent = trackEvent;
 window.trackPageView = trackPageView;
 window.trackAppStoreClick = trackAppStoreClick;
 window.hasAnalyticsConsent = hasAnalyticsConsent;
-window.hasMarketingConsent = hasMarketingConsent;
 
 // Auto-initialize on page load if consent already given
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('📦 DOMContentLoaded - checking for existing consent');
-        initAnalytics();
-    });
+    document.addEventListener('DOMContentLoaded', initAnalytics);
 } else {
-    console.log('📦 Document already loaded - checking for existing consent');
     initAnalytics();
 }

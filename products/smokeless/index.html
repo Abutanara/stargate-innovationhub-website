@@ -731,8 +731,7 @@
                     <h4 class="footer__column-title">Produkte</h4>
                     <div class="footer__links">
                         <a href="/products/smokeless/" class="footer__link">SmokeLess</a>
-                        <a href="/products/forevertold/" class="footer__link">ForeverTold</a>
-                        <a href="/products/weddy/" class="footer__link">Weddy</a>
+                        <a href="/products/weddy/" class="footer__link">My Weddy</a>
                         <a href="/products/" class="footer__link">Alle Produkte</a>
                     </div>
                 </div>
@@ -769,8 +768,8 @@
     <div id="cookie-banner" class="cookie-banner cookie-banner--smokeless">
         <div class="cookie-banner__content">
             <div class="cookie-banner__text">
-                <h4>🍪 Cookie-Hinweis</h4>
-                <p>Wir verwenden Cookies, um dein Browsing-Erlebnis zu verbessern, personalisierte Inhalte bereitzustellen und unseren Traffic zu analysieren. Durch Klicken auf "Erlauben" stimmst du der Verwendung unserer Cookies zu.</p>
+                <h4>Cookie-Hinweis</h4>
+                <p>Wir nutzen Cookies nur, um die Nutzung unserer Website anonym zu analysieren. Mit Klick auf "Erlauben" stimmst du dem zu.</p>
                 <div class="cookie-banner__links">
                     <a href="/legal/privacy.html">Datenschutz</a> | 
                     <a href="/legal/imprint.html">Impressum</a> | 
@@ -817,16 +816,6 @@
                     <p class="cookie-category__description">Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren.</p>
                 </div>
                 
-                <div class="cookie-category">
-                    <div class="cookie-category__header">
-                        <span class="cookie-category__title">Marketing-Cookies</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="cookie-marketing">
-                            <span class="toggle-switch__slider"></span>
-                        </label>
-                    </div>
-                    <p class="cookie-category__description">Diese Cookies werden verwendet, um Besucher über Websites hinweg für Marketingzwecke zu verfolgen.</p>
-                </div>
             </div>
             <div class="cookie-modal__footer">
                 <button id="cookie-save-settings" class="cookie-btn cookie-btn--primary">Einstellungen speichern</button>
@@ -847,7 +836,6 @@
             const modalCloseBtn = document.getElementById('cookie-modal-close');
             const saveSettingsBtn = document.getElementById('cookie-save-settings');
             const analyticsCheckbox = document.getElementById('cookie-analytics');
-            const marketingCheckbox = document.getElementById('cookie-marketing');
             
             // Check if user has already made a choice
             if (!localStorage.getItem('cookieConsent')) {
@@ -858,7 +846,6 @@
             acceptBtn?.addEventListener('click', () => {
                 localStorage.setItem('cookieConsent', 'accepted');
                 localStorage.setItem('cookieAnalytics', 'true');
-                localStorage.setItem('cookieMarketing', 'true');
                 banner.classList.remove('visible');
                 // Initialize analytics after consent
                 if (typeof updateAnalyticsConsent === 'function') {
@@ -870,7 +857,6 @@
             rejectBtn?.addEventListener('click', () => {
                 localStorage.setItem('cookieConsent', 'rejected');
                 localStorage.setItem('cookieAnalytics', 'false');
-                localStorage.setItem('cookieMarketing', 'false');
                 banner.classList.remove('visible');
                 // Update analytics consent (will disable)
                 if (typeof updateAnalyticsConsent === 'function') {
@@ -883,7 +869,6 @@
                 modal.classList.add('visible');
                 // Load saved preferences
                 analyticsCheckbox.checked = localStorage.getItem('cookieAnalytics') === 'true';
-                marketingCheckbox.checked = localStorage.getItem('cookieMarketing') === 'true';
             });
             
             // Close modal
@@ -902,7 +887,6 @@
             saveSettingsBtn?.addEventListener('click', () => {
                 localStorage.setItem('cookieConsent', 'custom');
                 localStorage.setItem('cookieAnalytics', analyticsCheckbox.checked ? 'true' : 'false');
-                localStorage.setItem('cookieMarketing', marketingCheckbox.checked ? 'true' : 'false');
                 modal.classList.remove('visible');
                 banner.classList.remove('visible');
                 // Update analytics based on new preferences
