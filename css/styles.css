@@ -30,7 +30,12 @@
     --color-weddy: #A78B7B;
     --color-weddy-dark: #8B7265;
     --color-weddy-light: #C4A99A;
-    
+
+    /* Product Colors - My Wishlists (Terracotta, Warm-Editorial brand) */
+    --color-wishlists: #C25A2E;
+    --color-wishlists-dark: #9D3C19;
+    --color-wishlists-light: #D97B4F;
+
     /* Neutral Colors - Dark Theme */
     --color-bg-primary: #0A0A0F;
     --color-bg-secondary: #12121A;
@@ -209,6 +214,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .gradient-text--weddy {
     background: linear-gradient(135deg, var(--color-weddy-light), var(--color-weddy));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text--wishlists {
+    background: linear-gradient(135deg, var(--color-wishlists-light), var(--color-wishlists));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -426,6 +438,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn--weddy:hover {
     box-shadow: 0 6px 20px rgba(167, 139, 123, 0.5);
+}
+
+.btn--wishlists {
+    background: linear-gradient(135deg, var(--color-wishlists), var(--color-wishlists-dark));
+    box-shadow: 0 4px 14px rgba(194, 90, 46, 0.4);
+}
+
+.btn--wishlists:hover {
+    box-shadow: 0 6px 20px rgba(194, 90, 46, 0.5);
 }
 
 .btn--large {
@@ -676,6 +697,10 @@ h1, h2, h3, h4, h5, h6 {
     --product-color: linear-gradient(90deg, var(--color-weddy), var(--color-weddy-dark));
 }
 
+.product-card--wishlists {
+    --product-color: linear-gradient(90deg, var(--color-wishlists), var(--color-wishlists-dark));
+}
+
 .product-card__icon {
     width: 64px;
     height: 64px;
@@ -858,9 +883,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-hero--weddy .hero__bg-gradient {
-    background: 
+    background:
         radial-gradient(ellipse 80% 50% at 50% -20%, rgba(167, 139, 123, 0.2), transparent),
         radial-gradient(ellipse 60% 40% at 80% 80%, rgba(196, 169, 154, 0.1), transparent);
+}
+
+.product-hero--wishlists .hero__bg-gradient {
+    background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(194, 90, 46, 0.2), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(217, 123, 79, 0.1), transparent);
 }
 
 .product-hero__container {
@@ -2105,6 +2136,34 @@ h1, h2, h3, h4, h5, h6 {
 /* Weddy Trust Cards */
 .trust-card__icon--weddy {
     background: linear-gradient(135deg, var(--color-weddy), var(--color-weddy-dark));
+}
+
+/* My Wishlists Variants */
+.benefit-item--wishlists:hover {
+    border-color: var(--color-wishlists);
+    box-shadow: 0 0 30px rgba(194, 90, 46, 0.1);
+}
+
+.benefit-icon--wishlists {
+    background: linear-gradient(135deg, var(--color-wishlists), var(--color-wishlists-dark));
+}
+
+.target-item__icon--wishlists {
+    background: rgba(194, 90, 46, 0.1);
+    color: var(--color-wishlists);
+}
+
+.trust-card__icon--wishlists {
+    background: linear-gradient(135deg, var(--color-wishlists), var(--color-wishlists-dark));
+}
+
+.demo-card__number--wishlists {
+    background: var(--color-wishlists);
+    color: white;
+}
+
+.demo-card__icon--wishlists {
+    background: linear-gradient(135deg, var(--color-wishlists), var(--color-wishlists-dark));
 }
 
 /* ========================================
