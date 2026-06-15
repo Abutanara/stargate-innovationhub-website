@@ -15,3 +15,6 @@ Disallow: /staging/
 Disallow: /test/
 Disallow: /_dev/
 
+# Archived original websites (old branding, not part of the live site)
+Disallow: /_original/
+
