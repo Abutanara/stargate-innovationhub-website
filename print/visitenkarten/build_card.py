@@ -23,6 +23,7 @@ import os
 import sys
 
 import numpy as np
+import segno
 from PIL import Image
 from reportlab.lib.colors import CMYKColor
 from reportlab.lib.units import mm
@@ -151,6 +152,27 @@ def tracked_text(c, x_mm, y_mm, text, font, size, color, tracking=0.0,
     c.drawText(t)
 
 
+def qr_matrix(url):
+    return [list(row) for row in segno.make(url, error="m").matrix]
+
+
+def draw_qr(c, matrix, x_mm, y_top_mm, size_mm, color):
+    """QR als Vektor-Rechtecke; Module minimal ueberlappend (keine Haarspalten)."""
+    n = len(matrix)
+    mod = size_mm / n
+    c.setFillColor(col(color))
+    for ry, row in enumerate(matrix):
+        for rx, v in enumerate(row):
+            if v:
+                c.rect((x_mm + rx * mod) * mm - 0.02,
+                       top(y_top_mm + (ry + 1) * mod) - 0.02,
+                       mod * mm + 0.04, mod * mm + 0.04, stroke=0, fill=1)
+
+
+QR_STARGATE = qr_matrix("https://stargate-innovationhub.com")
+QR_WEDDY = qr_matrix("https://my-weddy.com")
+
+
 def draw_front(c):
     """Seite 1 — Stargate Innovationhub (dunkel)."""
     c.setFillColor(col(SG_BG))
@@ -170,12 +192,20 @@ def draw_front(c):
     tracked_text(c, 8, 50.0, "Gründer & Inhaber", "Inter-Regular", 6, SG_GRAY,
                  align="left")
 
-    tracked_text(c, 79, 43.6, "info@stargate-innovationhub.com",
+    tracked_text(c, 79, 41.0, "+49 155 67226511",
                  "Inter-Medium", 6.3, WHITE, align="right")
-    tracked_text(c, 79, 46.8, "stargate-innovationhub.com",
+    tracked_text(c, 79, 44.0, "info@stargate-innovationhub.com",
+                 "Inter-Medium", 6.3, WHITE, align="right")
+    tracked_text(c, 79, 47.0, "stargate-innovationhub.com",
                  "Inter-Medium", 6.3, SG_BLUE, align="right")
     tracked_text(c, 79, 50.0, "Albert-Schweitzer-Allee 9 · 65203 Wiesbaden",
                  "Inter-Regular", 6, SG_GRAY, align="right")
+
+    # Dezenter QR-Code (-> Website) oben rechts: weisse Kachel, damit der
+    # Code auf dunklem Fond zuverlaessig scannt; Module in reinem Schwarz.
+    c.setFillColor(col(WHITE))
+    c.roundRect(66 * mm, top(20), 13 * mm, 13 * mm, 1 * mm, stroke=0, fill=1)
+    draw_qr(c, QR_STARGATE, 67.5, 8.5, 10.0, (0.0, 0.0, 0.0, 1.0))
 
     # Blaue Fusskante: 2.5mm ab Datenformat-Kante, bleibt bei ±1mm
     # Schneidetoleranz immer sichtbar und laeuft in den Beschnitt.
@@ -189,21 +219,25 @@ def draw_back(c):
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
 
     mark_x = (87 - WD_MARK_W) / 2
-    c.drawImage(WD_MARK_JPG, mark_x * mm, top(14.8 + WD_MARK_H),
+    c.drawImage(WD_MARK_JPG, mark_x * mm, top(14.2 + WD_MARK_H),
                 WD_MARK_W * mm, WD_MARK_H * mm)
 
     c.setStrokeColor(col(WD_RULE))
     c.setLineWidth(0.45)
-    c.line((43.5 - 6) * mm, top(31.6), (43.5 + 6) * mm, top(31.6))
+    c.line((43.5 - 6) * mm, top(31.0), (43.5 + 6) * mm, top(31.0))
 
-    tracked_text(c, 43.5, 39.4, "„Aus Planung wird Vorfreude.“",
-                 "Cormorant-MediumItalic", 12, WD_INK, tracking=0.15)
+    tracked_text(c, 43.5, 38.6, "„Aus Planung wird Vorfreude.“",
+                 "Cormorant-MediumItalic", 11, WD_INK, tracking=0.15)
 
-    tracked_text(c, 43.5, 45.6, "my-weddy.com", "Inter-Medium", 7, WD_SOFT,
+    tracked_text(c, 43.5, 44.8, "my-weddy.com", "Inter-Medium", 7, WD_SOFT,
                  tracking=1.1)
 
-    tracked_text(c, 43.5, 52.2, "Ein Produkt von Stargate Innovationhub",
+    tracked_text(c, 43.5, 51.9, "Ein Produkt von Stargate Innovationhub",
                  "Inter-Regular", 5.4, WD_FAINT, tracking=0.35)
+
+    # Dezenter QR-Code (-> my-weddy.com) unten rechts, reines K auf Cream;
+    # 1.5mm Ruhezone zu Claim/URL sind im Layout freigehalten.
+    draw_qr(c, QR_WEDDY, 69.5, 39.5, 10.0, (0.0, 0.0, 0.0, 0.92))
 
 
 def set_page_boxes(c):
@@ -241,3 +275,22 @@ for i, page in enumerate(doc):
     png = os.path.join(OUT, f"vorschau-seite-{i + 1}.png")
     pix.save(png)
     print("Vorschau:", png)
+
+# ------------------------------------- QR-Verifikation (Ruecklesen aus PDF)
+try:
+    import io  # noqa: E402
+
+    import zxingcpp  # noqa: E402
+except ImportError:
+    sys.exit("zxing-cpp fehlt (pip install zxing-cpp) — "
+             "QR-Codes konnten nicht verifiziert werden")
+
+EXPECTED_QR = {1: "https://stargate-innovationhub.com",
+               2: "https://my-weddy.com"}
+for i, page in enumerate(doc, start=1):
+    pix = page.get_pixmap(dpi=300)
+    im = Image.open(io.BytesIO(pix.tobytes("png"))).convert("L")
+    texts = [r.text for r in zxingcpp.read_barcodes(im)]
+    if EXPECTED_QR[i] not in texts:
+        sys.exit(f"QR auf Seite {i} nicht lesbar (gefunden: {texts})")
+    print(f"QR Seite {i} verifiziert: {EXPECTED_QR[i]}")
