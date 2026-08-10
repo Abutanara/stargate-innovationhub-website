@@ -23,7 +23,6 @@ import os
 import sys
 
 import numpy as np
-import segno
 from PIL import Image
 from reportlab.lib.colors import CMYKColor
 from reportlab.lib.units import mm
@@ -158,27 +157,6 @@ def tracked_text(c, x_mm, y_mm, text, font, size, color, tracking=0.0,
     c.drawText(t)
 
 
-def qr_matrix(url):
-    return [list(row) for row in segno.make(url, error="m").matrix]
-
-
-def draw_qr(c, matrix, x_mm, y_top_mm, size_mm, color):
-    """QR als Vektor-Rechtecke; Module minimal ueberlappend (keine Haarspalten)."""
-    n = len(matrix)
-    mod = size_mm / n
-    c.setFillColor(col(color))
-    for ry, row in enumerate(matrix):
-        for rx, v in enumerate(row):
-            if v:
-                c.rect((x_mm + rx * mod) * mm - 0.02,
-                       top(y_top_mm + (ry + 1) * mod) - 0.02,
-                       mod * mm + 0.04, mod * mm + 0.04, stroke=0, fill=1)
-
-
-QR_STARGATE = qr_matrix("https://stargate-innovationhub.com")
-QR_WEDDY = qr_matrix("https://my-weddy.com")
-
-
 def front_contact(c, y0):
     """Kontaktblock der Stargate-Seite: links Name, rechts drei Zeilen,
     beginnend bei Basislinie y0 (mm von oben)."""
@@ -201,34 +179,18 @@ def front_contact(c, y0):
 
 
 def draw_front(c):
-    """Seite 1 — Stargate Innovationhub (dunkel): Logo-Lockup und QR-Kachel
-    als Gruppe mittig zentriert (QR rechts neben dem Logo)."""
+    """Seite 1 — Stargate Innovationhub (dunkel), Logo-Lockup zentriert."""
     c.setFillColor(col(SG_BG))
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
 
-    lockup_w = max(SG_ICON_W,
-                   text_w_mm("Stargate", "Outfit-ExtraBold", 17, 0.2),
-                   text_w_mm("INNOVATION HUB", "Outfit-SemiBold", 6.6, 2.6))
-    tile = 13.0
-    gap = 9.0
-    left = (87 - (lockup_w + gap + tile)) / 2
-    lockup_cx = left + lockup_w / 2
-    tile_x = left + lockup_w + gap
+    icon_x = (87 - SG_ICON_W) / 2
+    c.drawImage(SG_ICON_JPG, icon_x * mm, top(9.2 + SG_ICON_H),
+                SG_ICON_W * mm, SG_ICON_H * mm)
 
-    c.drawImage(SG_ICON_JPG, (lockup_cx - SG_ICON_W / 2) * mm,
-                top(9.2 + SG_ICON_H), SG_ICON_W * mm, SG_ICON_H * mm)
-    tracked_text(c, lockup_cx, 30.6, "Stargate", "Outfit-ExtraBold", 17,
-                 WHITE, tracking=0.2)
-    tracked_text(c, lockup_cx, 35.4, "INNOVATION HUB", "Outfit-SemiBold", 6.6,
+    tracked_text(c, 43.5, 30.6, "Stargate", "Outfit-ExtraBold", 17, WHITE,
+                 tracking=0.2)
+    tracked_text(c, 43.5, 35.4, "INNOVATION HUB", "Outfit-SemiBold", 6.6,
                  SG_BLUE, tracking=2.6)
-
-    # QR-Kachel vertikal auf Lockup-Mitte (9.2..35.4 -> 22.3) zentriert;
-    # weisse Kachel, damit der Code auf dunklem Fond zuverlaessig scannt.
-    c.setFillColor(col(WHITE))
-    c.roundRect(tile_x * mm, top(22.3 + tile / 2), tile * mm, tile * mm,
-                1 * mm, stroke=0, fill=1)
-    draw_qr(c, QR_STARGATE, tile_x + 1.5, 22.3 - 5.0, 10.0,
-            (0.0, 0.0, 0.0, 1.0))
 
     front_contact(c, 43.6)
 
@@ -240,7 +202,7 @@ def draw_front(c):
 
 def draw_back(c):
     """Seite 2 — My Weddy (Editorial, warm): Wortmarke zentriert, Overline
-    vor dem Claim, unten rechts kleiner QR neben der Webadresse."""
+    vor dem Claim, alles auf der Mittelachse."""
     c.setFillColor(col(WD_BG))
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
 
@@ -259,16 +221,11 @@ def draw_back(c):
     tracked_text(c, 43.5, 41.6, "„Aus Planung wird Vorfreude.“",
                  "Cormorant-MediumItalic", 12, WD_INK, tracking=0.15)
 
-    # Unteres Band: links Produkt-Zeile, rechts Webadresse mit kleinem QR
-    # (-> my-weddy.com) in reinem K auf Cream, 3mm Ruhezone zum Text.
-    qr = 8.5
-    qr_x = 79 - qr
-    qr_top = 48.25 - qr / 2
-    draw_qr(c, QR_WEDDY, qr_x, qr_top, qr, (0.0, 0.0, 0.0, 0.92))
-    tracked_text(c, qr_x - 3.0, 49.1, "my-weddy.com", "Inter-Medium", 6.8,
-                 WD_SOFT, tracking=0.6, align="right")
-    tracked_text(c, 8, 49.1, "Ein Produkt von Stargate Innovationhub",
-                 "Inter-Regular", 4.8, WD_FAINT, tracking=0.2, align="left")
+    tracked_text(c, 43.5, 47.4, "my-weddy.com", "Inter-Medium", 7, WD_SOFT,
+                 tracking=1.1)
+
+    tracked_text(c, 43.5, 51.8, "Ein Produkt von Stargate Innovationhub",
+                 "Inter-Regular", 5.4, WD_FAINT, tracking=0.35)
 
 
 def set_page_boxes(c):
@@ -306,22 +263,3 @@ for i, page in enumerate(doc):
     png = os.path.join(OUT, f"vorschau-seite-{i + 1}.png")
     pix.save(png)
     print("Vorschau:", png)
-
-# ------------------- QR-Verifikation (Ruecklesen aus der gebauten PDF)
-try:
-    import io  # noqa: E402
-
-    import zxingcpp  # noqa: E402
-except ImportError:
-    sys.exit("zxing-cpp fehlt (pip install zxing-cpp) — "
-             "QR-Codes konnten nicht verifiziert werden")
-
-EXPECTED_QR = {1: "https://stargate-innovationhub.com",
-               2: "https://my-weddy.com"}
-for i, page in enumerate(doc, start=1):
-    pix = page.get_pixmap(dpi=300)
-    im = Image.open(io.BytesIO(pix.tobytes("png"))).convert("L")
-    texts = [r.text for r in zxingcpp.read_barcodes(im)]
-    if EXPECTED_QR[i] not in texts:
-        sys.exit(f"QR auf Seite {i} nicht lesbar (gefunden: {texts})")
-    print(f"QR Seite {i} verifiziert: {EXPECTED_QR[i]}")
