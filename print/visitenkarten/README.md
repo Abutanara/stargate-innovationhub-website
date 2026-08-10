@@ -6,7 +6,7 @@ Beidseitige Visitenkarte für Flyeralarm, Produkt **„Visitenkarten klassisch,
 | Seite | Motiv |
 |---|---|
 | 1 (Vorderseite) | Stargate Innovationhub — dunkles Markenmotiv; Logo-Lockup und QR-Code (→ stargate-innovationhub.com) als mittig zentrierte Gruppe; Kontakt Florian Aboutara (Tel. +49 155 67226511, ohne Postadresse) |
-| 2 (Rückseite) | My Weddy — Editorial-Design; Wortmarke und QR-Code (→ my-weddy.com) als mittig zentrierte Gruppe, Overline „Dein Hochzeitsplaner“, Leit-Claim „Aus Planung wird Vorfreude.“ |
+| 2 (Rückseite) | My Weddy — Editorial-Design; Wortmarke zentriert, Overline „Dein Hochzeitsplaner“, Leit-Claim „Aus Planung wird Vorfreude.“; unten rechts kleiner QR-Code (→ my-weddy.com) neben der Webadresse |
 
 ## Druckdaten (`druckdaten/`)
 
@@ -27,9 +27,9 @@ Technische Eckdaten:
 - Schriften eingebettet (subsettiert): Outfit, Inter, Cormorant Garamond
 - Texte halten die 3-mm-Sicherheitszone ein; die blaue Fußkante der
   Vorderseite läuft bewusst in den Beschnitt
-- QR-Codes als Vektor-Module direkt in der PDF (ECC M, 10 mm Kantenlänge),
-  jeweils rechts neben dem Logo: auf der dunklen Vorderseite auf weißer
-  Kachel (zuverlässiges Scannen), auf der Rückseite in reinem K auf Cream;
+- QR-Codes als Vektor-Module direkt in der PDF (ECC M): vorn 10 mm auf
+  weißer Kachel rechts neben dem Logo (zuverlässiges Scannen auf dunklem
+  Fond), hinten 8,5 mm in reinem K unten rechts neben der Webadresse;
   beide Codes werden beim Build aus dem 300-dpi-Rendering maschinell
   rückgelesen und verifiziert
 

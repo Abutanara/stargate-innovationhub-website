@@ -239,39 +239,36 @@ def draw_front(c):
 
 
 def draw_back(c):
-    """Seite 2 — My Weddy (Editorial, warm): Wortmarke und QR als Gruppe
-    mittig zentriert (QR rechts neben dem Logo), Overline vor dem Claim."""
+    """Seite 2 — My Weddy (Editorial, warm): Wortmarke zentriert, Overline
+    vor dem Claim, unten rechts kleiner QR neben der Webadresse."""
     c.setFillColor(col(WD_BG))
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
 
-    mark_w = 38.0
+    mark_w = 43.0
     mark_h = mark_w * wd_mark_px[1] / wd_mark_px[0]
-    qr = 10.0
-    gap = 6.0
-    left = (87 - (mark_w + gap + qr)) / 2
-    mark_cy = 13.2 + mark_h / 2
-
-    c.drawImage(WD_MARK_JPG, left * mm, top(13.2 + mark_h),
+    c.drawImage(WD_MARK_JPG, (87 - mark_w) / 2 * mm, top(13.8 + mark_h),
                 mark_w * mm, mark_h * mm)
-    # QR (-> my-weddy.com) in reinem K, vertikal auf Wortmarken-Mitte.
-    draw_qr(c, QR_WEDDY, left + mark_w + gap, mark_cy - qr / 2, qr,
-            (0.0, 0.0, 0.0, 0.92))
 
-    tracked_text(c, 43.5, 29.4, "DEIN HOCHZEITSPLANER", "Inter-Medium", 6,
+    tracked_text(c, 43.5, 30.2, "DEIN HOCHZEITSPLANER", "Inter-Medium", 6,
                  WD_SOFT, tracking=2.0)
 
     c.setStrokeColor(col(WD_RULE))
     c.setLineWidth(0.45)
-    c.line((43.5 - 6) * mm, top(34.2), (43.5 + 6) * mm, top(34.2))
+    c.line((43.5 - 6) * mm, top(34.6), (43.5 + 6) * mm, top(34.6))
 
-    tracked_text(c, 43.5, 41.0, "„Aus Planung wird Vorfreude.“",
+    tracked_text(c, 43.5, 41.6, "„Aus Planung wird Vorfreude.“",
                  "Cormorant-MediumItalic", 12, WD_INK, tracking=0.15)
 
-    tracked_text(c, 43.5, 46.6, "my-weddy.com", "Inter-Medium", 7, WD_SOFT,
-                 tracking=1.1)
-
-    tracked_text(c, 43.5, 51.8, "Ein Produkt von Stargate Innovationhub",
-                 "Inter-Regular", 5.4, WD_FAINT, tracking=0.35)
+    # Unteres Band: links Produkt-Zeile, rechts Webadresse mit kleinem QR
+    # (-> my-weddy.com) in reinem K auf Cream, 3mm Ruhezone zum Text.
+    qr = 8.5
+    qr_x = 79 - qr
+    qr_top = 48.25 - qr / 2
+    draw_qr(c, QR_WEDDY, qr_x, qr_top, qr, (0.0, 0.0, 0.0, 0.92))
+    tracked_text(c, qr_x - 3.0, 49.1, "my-weddy.com", "Inter-Medium", 6.8,
+                 WD_SOFT, tracking=0.6, align="right")
+    tracked_text(c, 8, 49.1, "Ein Produkt von Stargate Innovationhub",
+                 "Inter-Regular", 4.8, WD_FAINT, tracking=0.2, align="left")
 
 
 def set_page_boxes(c):
