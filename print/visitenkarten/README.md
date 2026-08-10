@@ -5,16 +5,24 @@ Beidseitige Visitenkarte für Flyeralarm, Produkt **„Visitenkarten klassisch,
 
 | Seite | Motiv |
 |---|---|
-| 1 (Vorderseite) | Stargate Innovationhub — dunkles Markenmotiv, Kontakt Florian Aboutara (Tel. +49 155 67226511), QR-Code → stargate-innovationhub.com |
-| 2 (Rückseite) | My Weddy — Editorial-Design, Leit-Claim „Aus Planung wird Vorfreude.“, QR-Code → my-weddy.com |
+| 1 (Vorderseite) | Stargate Innovationhub — dunkles Markenmotiv, Kontakt Florian Aboutara (Tel. +49 155 67226511, ohne Postadresse) |
+| 2 (Rückseite) | My Weddy — Editorial-Design, Leit-Claim „Aus Planung wird Vorfreude.“, my-weddy.com |
+
+Es gibt zwei Ausführungen: die **Hauptvariante ohne QR-Codes** (ruhig,
+symmetrisch) und eine **Alternativ-Variante mit QR-Codes**, bei der die
+Codes symmetrisch ins Layout eingebunden sind — vorn als Eckgewicht
+gegenüber dem Icon (Wortmarke mittig dazwischen), hinten zentriert auf der
+Mittelachse.
 
 ## Druckdaten (`druckdaten/`)
 
-- **`visitenkarte-stargate-myweddy-85x55-4-4.pdf`** — die Upload-Datei
-  (2 Seiten: S. 1 Vorderseite, S. 2 Rückseite)
+- **`visitenkarte-stargate-myweddy-85x55-4-4.pdf`** — Hauptvariante ohne QR,
+  die Upload-Datei (2 Seiten: S. 1 Vorderseite, S. 2 Rückseite)
+- `visitenkarte-variante-mit-qr-85x55-4-4.pdf` — Alternativ-Variante mit
+  QR-Codes (S. 1 → stargate-innovationhub.com, S. 2 → my-weddy.com)
 - `visitenkarte-einzelseite-1-stargate.pdf` / `visitenkarte-einzelseite-2-myweddy.pdf`
-  — dieselben Motive einzeln, falls der Upload je Seite eine Datei verlangt
-- `vorschau-seite-1.png` / `vorschau-seite-2.png` — 300-dpi-Vorschau
+  — die Hauptvarianten-Motive einzeln, falls der Upload je Seite eine Datei verlangt
+- `vorschau-seite-*.png` / `vorschau-variante-qr-seite-*.png` — 300-dpi-Vorschau
 
 Technische Eckdaten:
 
@@ -27,10 +35,11 @@ Technische Eckdaten:
 - Schriften eingebettet (subsettiert): Outfit, Inter, Cormorant Garamond
 - Texte halten die 3-mm-Sicherheitszone ein; die blaue Fußkante der
   Vorderseite läuft bewusst in den Beschnitt
-- QR-Codes als Vektor-Module direkt in der PDF (ECC M, 10 mm Kantenlänge):
-  auf der dunklen Vorderseite auf weißer Kachel (zuverlässiges Scannen),
-  auf der Rückseite in reinem K auf Cream; beide Codes werden beim Build
-  aus dem 300-dpi-Rendering maschinell rückgelesen und verifiziert
+- QR-Codes (nur Alternativ-Variante) als Vektor-Module direkt in der PDF
+  (ECC M, 10 mm Kantenlänge): auf der dunklen Vorderseite auf weißer Kachel
+  (zuverlässiges Scannen), auf der Rückseite in reinem K auf Cream; beide
+  Codes werden beim Build aus dem 300-dpi-Rendering maschinell rückgelesen
+  und verifiziert
 
 ## Neu bauen
 
