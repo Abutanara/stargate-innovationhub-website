@@ -206,25 +206,27 @@ def draw_back(c):
     c.setFillColor(col(WD_BG))
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
 
+    # Gesamter Block um 5.1mm nach oben versetzt, damit der Inhalt (Ink-
+    # Ausdehnung im Rendering gemessen) vertikal exakt mittig sitzt.
     mark_w = 43.0
     mark_h = mark_w * wd_mark_px[1] / wd_mark_px[0]
-    c.drawImage(WD_MARK_JPG, (87 - mark_w) / 2 * mm, top(13.8 + mark_h),
+    c.drawImage(WD_MARK_JPG, (87 - mark_w) / 2 * mm, top(8.7 + mark_h),
                 mark_w * mm, mark_h * mm)
 
-    tracked_text(c, 43.5, 30.2, "DEIN HOCHZEITSPLANER", "Inter-Medium", 6,
+    tracked_text(c, 43.5, 25.1, "DEIN HOCHZEITSPLANER", "Inter-Medium", 6,
                  WD_SOFT, tracking=2.0)
 
     c.setStrokeColor(col(WD_RULE))
     c.setLineWidth(0.45)
-    c.line((43.5 - 6) * mm, top(34.6), (43.5 + 6) * mm, top(34.6))
+    c.line((43.5 - 6) * mm, top(29.5), (43.5 + 6) * mm, top(29.5))
 
-    tracked_text(c, 43.5, 41.6, "„Aus Planung wird Vorfreude.“",
+    tracked_text(c, 43.5, 36.5, "„Aus Planung wird Vorfreude.“",
                  "Cormorant-MediumItalic", 12, WD_INK, tracking=0.15)
 
-    tracked_text(c, 43.5, 47.4, "my-weddy.com", "Inter-Medium", 7, WD_SOFT,
+    tracked_text(c, 43.5, 42.3, "my-weddy.com", "Inter-Medium", 7, WD_SOFT,
                  tracking=1.1)
 
-    tracked_text(c, 43.5, 51.8, "Ein Produkt von Stargate Innovationhub",
+    tracked_text(c, 43.5, 46.7, "Ein Produkt von Stargate Innovationhub",
                  "Inter-Regular", 5.4, WD_FAINT, tracking=0.35)
 
 
