@@ -74,7 +74,7 @@ brew install webp
 
 **Konvertierung aller PNG zu WebP:**
 ```bash
-cd /Users/florianaboutara/Downloads/Websites/images
+cd /Users/florianaboutara/Developer/stargate-innovationhub-website/images
 
 # Einzelne Datei
 cwebp -q 85 smokeless-icon.png -o smokeless-icon.webp

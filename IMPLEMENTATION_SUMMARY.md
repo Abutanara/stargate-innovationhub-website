@@ -100,7 +100,7 @@ Alle `<img>`-Tags wurden durch `<picture>`-Elemente ersetzt:
 
 #### Lokaler Test:
 ```bash
-cd /Users/florianaboutara/Downloads/Websites
+cd /Users/florianaboutara/Developer/stargate-innovationhub-website
 python3 -m http.server 8000
 ```
 Dann im Browser öffnen: `http://localhost:8000`
@@ -126,7 +126,7 @@ Dann im Browser öffnen: `http://localhost:8000`
 ### 2. Deployen (2 Minuten)
 
 ```bash
-cd /Users/florianaboutara/Downloads/Websites
+cd /Users/florianaboutara/Developer/stargate-innovationhub-website
 
 # Status prüfen
 git status
@@ -197,7 +197,7 @@ URLs testen:
 ### Problem: Bilder werden nicht angezeigt
 **Lösung:** Prüfe ob WebP-Dateien im `/images/` Ordner vorhanden sind:
 ```bash
-ls -lh /Users/florianaboutara/Downloads/Websites/images/*.webp
+ls -lh /Users/florianaboutara/Developer/stargate-innovationhub-website/images/*.webp
 ```
 
 ### Problem: Performance Score noch niedrig

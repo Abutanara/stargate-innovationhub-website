@@ -41,7 +41,7 @@
 brew install webp
 
 # 2. Führe das Konvertierungs-Script aus
-cd /Users/florianaboutara/Downloads/Websites
+cd /Users/florianaboutara/Developer/stargate-innovationhub-website
 ./convert-to-webp.sh
 
 # Das Script:
@@ -131,7 +131,7 @@ Sobald die WebP-Dateien in `/images/` vorhanden sind, müssen wir die HTML-Datei
 
 ### 1. WebP konvertieren (5 Minuten)
 ```bash
-cd /Users/florianaboutara/Downloads/Websites
+cd /Users/florianaboutara/Developer/stargate-innovationhub-website
 ./convert-to-webp.sh
 ```
 
